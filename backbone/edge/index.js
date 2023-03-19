@@ -34,6 +34,10 @@ class App extends require('./desk'){
 		new SessionManager(app)
 		console.log('app on', config.app.port)
 	}
+
+	config(req, res){
+		res.json(config.session)
+	}
 }
 
 new App()

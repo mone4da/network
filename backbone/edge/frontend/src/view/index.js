@@ -1,14 +1,25 @@
 import Component from './component'
+import Chart from './chart'
 
 let style = {
-	display: 'flex',
-	height: '100%'
+	view: {
+		display: 'flex',
+		height: '100%'
+	},
+
+	chart: {
+		display: 'flex',
+		height: '100%',
+	}
 }
 
 let View = props => {
 	return (
-		<div style={style}>
-			<Component.Icon />
+		<div style={style.view}>
+			<Chart
+				state={props.state}
+				Component={Component}
+				style={style.chart} />
 		</div>
 	)
 }

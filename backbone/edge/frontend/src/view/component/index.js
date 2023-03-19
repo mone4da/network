@@ -1,8 +1,10 @@
 
-import {Icon} from './draggable'
+import {Icon, Area, Rect} from './draggable'
 
 const publics = {
-	Icon: Icon
+	Icon: Icon,
+	Area: Area,
+	Rect: Rect
 }
 
 export default publics
