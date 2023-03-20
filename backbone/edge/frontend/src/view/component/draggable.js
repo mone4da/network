@@ -11,8 +11,11 @@ let Area = props => {
 	}
 
 	let drag = e => {
-		setPosition( p => ({x: p.x + e.clientX - po.x, y: p.y + e.clientY - po.y }) )
+		let d = {x: e.clientX - po.x, y: e.clientY - po.y}
+		setPosition( p => ({x: p.x + d.x, y: p.y + d.y }) )
 		setPo({x: e.clientX, y: e.clientY})
+
+		props.onDragging && (d.x !== 0 || d.y !== 0) && props.onDragging(position)
 	}
 
 	return 	<g 	style={{ cursor: dragging ? 'pointer' : 'default' }}
@@ -37,22 +40,21 @@ let Icon = props => {
 
 	return <Area
 			fill={props.area && props.area.fill}
-			offset = {props.area && props.area.offset || {x:0, y:0}}>
+			offset = {props.area && (props.area.offset || {x:0, y:0})}
+			onDragging={props.onDragging}>
 
 			<image
 				onMouseUp = {e => props.onSelected && props.onSelected()}
 				height={height}
 				width={width}
 				href={props.url} />
-
-			<text y={props.y || props.height && (props.height + 2) || 62 }>{props.id.toUpperCase()}</text>
 		</Area>
 }
 
 
 
 let Rect = props => {
-		return <Area fill={props.fill} offset = {props.area && props.area.offset || {x:0, y:0}}>
+		return <Area fill={props.fill} offset = {props.area && (props.area.offset || {x:0, y:0})}>
 
 			<rect
 				height={props.height || 40}

@@ -18,7 +18,7 @@ class Rest{
 		return {
 			data: response.data,
 			status: response.status,
-			ok : response.status == HTTP.OK
+			ok : response.status === HTTP.OK
 		}
 	}
 
@@ -27,7 +27,7 @@ class Rest{
 		return {
 			data: response.data,
 			status: response.status,
-			ok : response.status == HTTP.OK
+			ok : response.status === HTTP.OK
 		}
 	}
 
