@@ -15,6 +15,7 @@ let Regions = ({Component, state, onSelection, onDragging}) => {
 			{list.map(
 				item => <Component.Icon
 						onDragging={p => handleDragging(item.id,p)}
+						url={item.url}
 						area={{offset: item.position}}
 						onSelected={() => handleSelection(item.id)}/>
 			)}

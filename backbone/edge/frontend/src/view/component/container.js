@@ -3,16 +3,16 @@ import ReactResizeDetector from 'react-resize-detector'
 
 const style = {
 	H: {
-		display: 'flex',
-		flexDirection: 'row',
-		height: '100%',
-		background: 'yellow'
+		display: 'grid',
+		gridTemplateColumns: '50% auto',
+		width: '100%',
+		height: '100%'
 	},
 	V: {
-		display : 'flex',
-		flexDirection: 'column',
-		height: '100%',
-		background: 'orange'
+		display: 'grid',
+		gridTemplateRows: '50% auto',
+		width: '100%',
+		height: '100%'
 	}
 }
 
@@ -30,9 +30,7 @@ const VSplitter = props => {
 }
 
 const Splitter = props => {
-
-	 return 
-		<ReactResizeDetector handleHeight handleWidth >
+	return	<ReactResizeDetector handleHeight handleWidth >
 			{
 				({ width, height }) => width > height 	? <HSplitter>{props.children}</HSplitter>
 									: <VSplitter>{props.children}</VSplitter>

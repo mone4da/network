@@ -1,7 +1,6 @@
 import {useState} from 'react'
 
 let Area = props => {
-	console.log('area', props.offset)
 	let [po, setPo] = useState({x:0, y:0})
 	let [position, setPosition] = useState(props.offset || { x: 0, y: 0 })
 	let [dragging, setDragging] = useState(false)
@@ -19,8 +18,9 @@ let Area = props => {
 		props.onDragging && (d.x !== 0 || d.y !== 0) && props.onDragging(position)
 	}
 
-	return 	<g 	style={{ cursor: dragging ? 'pointer' : 'default' }}
-			transform = {"translate(" + position.x + ","  + position.y + ")"}
+	return 	<svg 	style={{ cursor: dragging ? 'pointer' : 'default' }}
+			//transform = {"translate(" + position.x + ","  + position.y + ")"}
+			x = {position.x} y={position.y}
 
 			onMouseDown={e => handleReady(e, true)}
 			onMouseUp={e => handleReady(e, false)}
@@ -31,7 +31,7 @@ let Area = props => {
 			>
 			{props.children}
 
-		</g>
+		</svg>
 }
 
 

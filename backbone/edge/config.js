@@ -9,7 +9,7 @@ module.exports = {
 	},
 
 	session: {
-		copyright: '4 Digital Asset Handelsbolag © 2023',
+		copyright: '4 Digital Asset © 2023',
 		time: Date.now(),
 		region: 'de',
 		regions : [
@@ -17,38 +17,38 @@ module.exports = {
 					id: 'us',
 					url: './asset/us.svg',
 					name: 'USA',
-					position: {x: 20, y: 20}
+					position: {x: 20, y: 100}
 				},
 				{
 					id: 'gb',
 					url: 'asset/gb.svg',
 					name: 'United Kingdom',
-					position: {x: 20, y: 60}
+					position: {x: 160, y: 50}
 				},
 				{
 					id: 'de',
 					url: './asset/de.svg',
 					name: 'Germany',
-					position: {x: 50, y: 60}
+					position: {x: 300, y: 100}
 				},
 				{
 					id: 'sg',
 					url: './asset/sg.svg',
 					name: 'Singapore',
-					position: {x: 120, y: 120}
+					position: {x: 300, y: 200}
 				},
 				{
 					id: 'au',
 					url: './asset/au.svg',
 					name: 'Australia',
-					position: {x: 220, y: 220}
+					position: {x: 20, y: 200}
 				}
 		],
 		links: [
-			{a:{id: 'us', x:  20, y: 20}, b:{id:'gb', x:20, y: 60}},
-			{a:{id: 'gb', x: 20, y: 60}, b:{id:'de', x:50, y: 60}},
-			{a:{id: 'de', x: 50, y: 60}, b:{id: 'sg', x:120, y: 120}},
-			{a:{id:'sg', x: 120, y: 120}, b:{id: 'au', x:220, y: 220}}
+			{a:{id: 'us', x:  40, y: 120}, b:{id:'gb', x:180, y: 70}},
+			{a:{id: 'gb', x: 180, y: 70}, b:{id:'de', x:320, y: 120}},
+			{a:{id: 'de', x: 320, y: 120}, b:{id: 'sg', x:320, y: 220}},
+			{a:{id:'sg', x: 320, y: 220}, b:{id: 'au', x:40, y: 220}}
 		]
 	},
 

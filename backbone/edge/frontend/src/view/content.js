@@ -9,19 +9,23 @@ const Content = props => {
 	let state = props.state
 
 	let [selection, setSelection] = useState(state.system.region)
+	let handleSelection = data => {
+		setSelection(data)
+	}
 
 	return <div style={style}>
-			{/*<Component.Splitter>
+			<Component.Splitter>
 					<Chart
 						state={state}
 						Component={Component}
-						style={style.chart} />
+						style={style.chart}
+						onSelection={handleSelection}/>
 
 					<Info
 						region={selection}
 						state={state}
 						style={style.info}/>
-				</Component.Splitter>*/}
+				</Component.Splitter>
 		</div>
 }
 

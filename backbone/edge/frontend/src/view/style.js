@@ -37,13 +37,18 @@ const style = {
 		chart: {
 			display: 'flex',
 			height: '100%',
-			background: 'red'
+			background: 'red',
+			minWidth: '400px'
 		},
 
 		info : {
 			display: 'flex',
+			flexDirection: 'column',
+			justtifyContent: 'center',
+			alignItems : 'senter',
 			height: '100%',
-			background:'orange'
+			background:'lightgray',
+			fontSize: '2em'
 		}
 	},
 
