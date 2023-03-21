@@ -1,7 +1,7 @@
 import {useState} from 'react'
 
 let Regions = ({Component, state, onSelection, onDragging}) => {
-	let list = state.system.flags
+	let list = state.system.regions
 
 	let handleSelection = id => {
 		onSelection && onSelection(id)
@@ -15,8 +15,7 @@ let Regions = ({Component, state, onSelection, onDragging}) => {
 			{list.map(
 				item => <Component.Icon
 						onDragging={p => handleDragging(item.id,p)}
-						{...item}
-						area={{fill: item.id === state.system.region ? 'red' : 'black'}}
+						area={{offset: item.position}}
 						onSelected={() => handleSelection(item.id)}/>
 			)}
 		</>
@@ -32,16 +31,12 @@ let Chart = props => {
 	const Component = props.Component
 	const state = props.state
 
-	let [data, setData]  = useState([
-		{a:{id: 'us', x: 0, y: 0}, b:{id:'gb', x:0, y: 0}},
-		{a:{id: 'de', x: 0, y: 0}, b:{id: 'sg', x:0, y: 0}},
-		{a:{id:'sg', x: 0, y: 0}, b:{id: 'au', x:0, y: 0}}
-		])
+	let [data, setData]  = useState(state.system.links)
 
 	let handleDragging = (id,x,y) => {
 		setData(data => data.map(item =>
-				item.a.id === id && ({a:{id,x,y}, b:item.b}) ||
-				item.b.id === id && ({a:item.a, b:{id,x,y}}) ||
+				(item.a.id === id && ({a:{id,x,y}, b:item.b})) ||
+				(item.b.id === id && ({a:item.a, b:{id,x,y}})) ||
 				item) )
 	}
 

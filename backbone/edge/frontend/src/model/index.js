@@ -19,8 +19,11 @@ class Model{
 
 
 		if (this.state.ok){
-			this.state.system.flags = config.data.flags
+			this.state.system.regions = config.data.regions
 			this.state.system.region = config.data.region
+			this.state.system.copyright = config.data.copyright
+
+			this.state.system.links = config.data.links
 		}
 
 

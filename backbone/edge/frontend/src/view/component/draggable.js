@@ -1,6 +1,7 @@
 import {useState} from 'react'
 
 let Area = props => {
+	console.log('area', props.offset)
 	let [po, setPo] = useState({x:0, y:0})
 	let [position, setPosition] = useState(props.offset || { x: 0, y: 0 })
 	let [dragging, setDragging] = useState(false)
