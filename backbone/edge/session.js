@@ -1,13 +1,19 @@
 
 class Session{
 	constructor(id, socket){
-		socket.on('disconnect', this.onEnd(id))
+		thisid = id
+		this.socket = socket
+		this.socket.on('disconnect', this.onEnd(id))
 
-		socket.on('data', data => this.onMessage(id, data))
+		this.socket.on('data', data => this.onMessage(data))
 	}
 
 	onEnd(id){}
-	onMessage(id, data){}
+	onMessage(data){}
+
+	send(data){
+		this.socket.emit('data', data)
+	}
 }
 
 module.exports = Session

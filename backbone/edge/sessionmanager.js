@@ -1,16 +1,11 @@
-const http = require('http')
-const {Server} = require('socket.io')
 
 const Session = require('./session')
 
 class SessionManager{
-	constructor(app, config){
-		this.httpServer = http.createServer(app)
-		this.io = new Server(this.httpServer)
+	constructor(io){
+		io.on('connection', socket => this.onConnection( this.createSession(socket)))
 
-		this.io.on('connection', socket => this.onConnection( this.createSession(socket)))
-
-		this.httpServer.listen(config.port, () => this.onInitialized())
+		this.onInitialized()
 	}
 
 	onInitialized(){}

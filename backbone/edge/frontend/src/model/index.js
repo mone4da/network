@@ -1,5 +1,5 @@
 
-//import {Session} from './session'
+import {Session} from './session'
 import Rest from './rest'
 
 class Model{
@@ -24,6 +24,8 @@ class Model{
 			this.state.system.copyright = config.data.copyright
 
 			this.state.system.links = config.data.links
+
+			this.session = new Session()
 		}
 
 

@@ -13,11 +13,11 @@ const style = {
 		width: '100%',
 		background: 'lightgray',
 		logo: {
-			width: '40px',
+			width: '50px',
 			height: '100%',
 			image: {
-				width: '40px',
-				height: '40px'
+				//width: '40px',
+				height: '100%'
 			}
 		},
 		legend : {
@@ -37,8 +37,7 @@ const style = {
 		chart: {
 			display: 'flex',
 			height: '100%',
-			background: 'red',
-			minWidth: '400px'
+			background: 'red'
 		},
 
 		info : {

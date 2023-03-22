@@ -1,11 +1,12 @@
 module.exports = {
 	app : {
+		greeting: 'app on',
 		port: 3002,
 		content: './frontend/build'
 	},
 
 	sessionmanager : {
-		port: 3003,
+		greeting: 'session manager on'
 	},
 
 	session: {

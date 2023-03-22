@@ -26,7 +26,7 @@ const Content = props => {
 						state={state}
 						style={style.info}/>
 				</Component.Splitter>
-		</div>
+	</div>
 }
 
 

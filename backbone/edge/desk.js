@@ -1,16 +1,25 @@
+const http = require('http')
 const xpr = require('express')
-const app = xpr()
+const {Server} = require('socket.io')
+
 
 class Desk{
 	constructor(config){
-		app.use(xpr.static(config.content))
+		this.app = xpr()
 
-		app.get('/config', (req, res) => this.config(req, res))
+		this.server = http.createServer(this.app)
 
-		app.listen(config.port, ()=> this.onInitialized(app))
+		this.app.use(xpr.static(config.app.content))
+
+		this.app.get('/config', (req, res) => this.config(req, res))
+
+		this.server.listen(config.app.port, ()=> {
+			this.io = new Server(this.server)
+			this.onInitialized()
+		})
 	}
 
-	onInitialized(app){}
+	onInitialized(){}
 
 	config(req, res){}
 }
