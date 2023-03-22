@@ -1,5 +1,5 @@
 
-import {Session} from './session'
+import Session from './session'
 import Rest from './rest'
 
 class Model{
@@ -25,7 +25,7 @@ class Model{
 
 			this.state.system.links = config.data.links
 
-			this.session = new Session()
+			this.session = new Session( data => this.onUpdate && this.onUpdate(data, 'session') )
 		}
 
 

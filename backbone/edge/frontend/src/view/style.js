@@ -47,7 +47,8 @@ const style = {
 			alignItems : 'senter',
 			height: '100%',
 			background:'lightgray',
-			fontSize: '2em'
+			fontSize: '2em',
+			padding: '20px'
 		}
 	},
 

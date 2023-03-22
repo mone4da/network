@@ -1,12 +1,13 @@
 import {useState} from 'react'
 
-import Component from './component'
 import Chart from './chart'
 import Info from './info'
 
 const Content = props => {
+	let Component = props.Component
 	let style = props.style
 	let state = props.state
+	let event = props.event
 
 	let [selection, setSelection] = useState(state.system.region)
 	let handleSelection = data => {
@@ -22,9 +23,12 @@ const Content = props => {
 						onSelection={handleSelection}/>
 
 					<Info
+						Component={Component}
 						region={selection}
+						regions={state.system.regions.map(item => item.id)}
 						state={state}
-						style={style.info}/>
+						style={style.info}
+						event={event}/>
 				</Component.Splitter>
 	</div>
 }

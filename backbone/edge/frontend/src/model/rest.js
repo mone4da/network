@@ -12,7 +12,6 @@ class Rest{
 
 	async get(){
 		let path = [this.root, ...arguments].join('/')
-		console.log(path)
 
 		let response = await axios.get(path)
 		return {

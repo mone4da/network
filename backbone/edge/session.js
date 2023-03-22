@@ -1,9 +1,9 @@
 
 class Session{
 	constructor(id, socket){
-		thisid = id
+		this.id = id
 		this.socket = socket
-		this.socket.on('disconnect', this.onEnd(id))
+		this.socket.on('disconnect',() => this.onEnd(id))
 
 		this.socket.on('data', data => this.onMessage(data))
 	}

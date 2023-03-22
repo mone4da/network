@@ -8,6 +8,7 @@ import asset from './asset'
 
 let View = props => {
 	let state = props.state
+	let event = props.event
 
 	return (
 		<div style={style}>
@@ -20,7 +21,8 @@ let View = props => {
 			<Content
 				Component={Component}
 				style={style.content}
-				state={state}  />
+				state={state} 
+				event={event}/>
 
 			<Footer
 				Component={Component}
