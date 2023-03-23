@@ -2,7 +2,7 @@
 import {Icon, Area, Rect} from './draggable'
 import {Link} from './drawer'
 import {Splitter} from './container'
-import {Bars} from './dataview'
+import {Bars, Lines} from './dataview'
 
 const publics = {
 	Icon: Icon,
@@ -10,7 +10,8 @@ const publics = {
 	Rect: Rect,
 	Link: Link,
 	Splitter,
-	Bars: Bars
+	Bars: Bars,
+	Lines: Lines
 }
 
 export default publics

@@ -25,7 +25,7 @@ const Content = props => {
 					<Info
 						Component={Component}
 						region={selection}
-						regions={state.system.regions.map(item => item.id)}
+						regions={state.system.regions.map(item => ({id: item.id, name: item.name}))}
 						state={state}
 						style={style.info}
 						event={event}/>

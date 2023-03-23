@@ -43,12 +43,8 @@ const style = {
 		info : {
 			display: 'flex',
 			flexDirection: 'column',
-			justtifyContent: 'center',
-			alignItems : 'senter',
 			height: '100%',
-			background:'lightgray',
-			fontSize: '2em',
-			padding: '20px'
+			fontSize: '2em'
 		}
 	},
 

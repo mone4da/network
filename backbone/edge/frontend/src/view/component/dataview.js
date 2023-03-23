@@ -22,7 +22,21 @@ const Bars = props => {
 		</svg>
 }
 
+const Lines = props => {
+	let data = props.data
+	let xscale = props.width / data.length
+	let yscale = props.height / props.max
+
+	let points = [...data.map( (value,i) => `${i*xscale}, ${props.height - value * yscale}`)].join(' ')
+
+	return <svg>
+			<polygon points={points} fill='gray' stroke='gray'/>
+		</svg>
+
+}
+
 
 export {
-	Bars
+	Bars,
+	Lines
 }
