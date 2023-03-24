@@ -3,15 +3,18 @@ const style = {
 	display: 'flex',
 	flexDirection: 'column',
 	height: '100%',
-	background: 'white',
+	background: '#03203d',
 
 	header: {
 		display: 'flex',
 		flexDirection: 'row',
 		justifyContent: 'space-between',
-		height: '50px',
+		alignItems: 'center',
+		height: '70px',
 		width: '100%',
-		background: 'lightgray',
+		background: '#03203d',
+		marginBottom: '10px',
+
 		logo: {
 			width: '50px',
 			height: '100%',
@@ -32,6 +35,7 @@ const style = {
 
 	content: {
 		display: 'flex',
+		flexDirection: 'column',
 		height: '100%',
 
 		chart: {
@@ -53,7 +57,7 @@ const style = {
 		flexDirection: 'row',
 		alignItems: 'center',
 		height: '40px',
-		background: 'lightgray',
+		background: '#03203d',
 		fontFamily: 'Arial, Helvetica, sans-serif',
 		fontWeight: 'bold',
 		paddingLeft: '4px'

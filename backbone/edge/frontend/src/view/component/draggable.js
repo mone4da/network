@@ -18,14 +18,22 @@ let Area = props => {
 		props.onDragging && (d.x !== 0 || d.y !== 0) && props.onDragging(position)
 	}
 
-	return 	<svg 	style={{ cursor: dragging ? 'pointer' : 'default' }}
-			//transform = {"translate(" + position.x + ","  + position.y + ")"}
+	let touchDrag = e => {
+		e.preventDefault()
+		drag(e.touches[0])
+	}
+
+	return 	<svg 	style={{ cursor: dragging ? 'pointer' : 'default', touchAction: 'none' }}
 			x = {position.x} y={position.y}
 
 			onMouseDown={e => handleReady(e, true)}
 			onMouseUp={e => handleReady(e, false)}
 			onMouseLeave={e=> dragging && handleReady(e ,false)}
 			onMouseMove={e => dragging && drag(e)}
+
+			onTouchStart={e => handleReady(e.touches[0], true)}
+			onTouchEnd={e => handleReady(e.touches[0], false)}
+			onTouchMove={e => dragging && touchDrag(e)}
 
 			fill={props.fill}
 			>

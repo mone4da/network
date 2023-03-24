@@ -30,7 +30,7 @@ const Lines = props => {
 	let points = [...data.map( (value,i) => `${i*xscale}, ${props.height - value * yscale}`)].join(' ')
 
 	return <svg>
-			<polygon points={points} fill='gray' stroke='gray'/>
+			<polygon points={points} fill='#F1F6FA' stroke='#117DBB'/>
 		</svg>
 
 }

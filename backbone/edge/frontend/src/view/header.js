@@ -18,6 +18,9 @@ const Header = props => {
 
 	return <div style={style}>
 			<Logo style={style.logo} image={asset.logo} />
+			
+			<label>4 Digital Asset</label>
+
 			<Legend style={style.legend} image={asset.legend} />
 		</div>
 }

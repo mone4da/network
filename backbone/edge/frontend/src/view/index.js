@@ -21,13 +21,8 @@ let View = props => {
 			<Content
 				Component={Component}
 				style={style.content}
-				state={state} 
+				state={state}
 				event={event}/>
-
-			<Footer
-				Component={Component}
-				style={style.footer}
-				state={state}  />
 		</div>
 	)
 }

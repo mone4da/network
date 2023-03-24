@@ -1,6 +1,6 @@
 import {useState} from 'react'
 
-import Chart from './chart'
+import Menu from './menu'
 import Info from './info'
 
 const Content = props => {
@@ -9,27 +9,26 @@ const Content = props => {
 	let state = props.state
 	let event = props.event
 
+	let regions = state.system.regions
+
 	let [selection, setSelection] = useState(state.system.region)
 	let handleSelection = data => {
 		setSelection(data)
 	}
 
 	return <div style={style}>
-			<Component.Splitter>
-					<Chart
-						state={state}
-						Component={Component}
-						style={style.chart}
-						onSelection={handleSelection}/>
+			<Menu
+				regions = {regions}
+				onSelection = {handleSelection}
+			/>
 
-					<Info
-						Component={Component}
-						region={selection}
-						regions={state.system.regions.map(item => ({id: item.id, name: item.name}))}
-						state={state}
-						style={style.info}
-						event={event}/>
-				</Component.Splitter>
+			<Info
+				Component={Component}
+				region={regions.find(item => item.id === selection)}
+				regions={regions}
+				state={state}
+				style={style.info}
+				event={event}/>
 	</div>
 }
 
