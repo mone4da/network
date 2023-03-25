@@ -59,6 +59,7 @@ let style = {
 
 
 const Info = props => {
+	console.log( props.region )
 	let Component = props.Component
 
 	let BarChart = props => {
@@ -109,7 +110,7 @@ const Info = props => {
 
 	return <div style={props.style}>
 
-			<div style={style.bigLabel}><a style={style.link} href=''>{props.region.name.toUpperCase()}</a></div>
+			<div style={style.bigLabel}><a style={style.link} href={props.region.location}>{props.region.name.toUpperCase()}</a></div>
 
 			<div style={{display: 'flex', flexDirection: 'column'}}>
 				<div style={{display: 'flex'}}>

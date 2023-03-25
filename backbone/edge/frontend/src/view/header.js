@@ -7,7 +7,7 @@ const Logo = ({style, image}) => {
 
 const Legend = ({style, image}) => {
 	return <div style={style}>
-			<img style={style.image} src={image.url} alt={image.alt} />
+			<img style={style.image} src={image.url} alt={image.name} />
 		</div>
 }
 
@@ -16,12 +16,14 @@ const Header = props => {
 	let style = props.style
 	let asset = props.asset
 
+	let image = props.state.system.regions.find(item => item.id === props.state.system.region)
+
 	return <div style={style}>
 			<Logo style={style.logo} image={asset.logo} />
-			
+
 			<label>4 Digital Asset</label>
 
-			<Legend style={style.legend} image={asset.legend} />
+			<Legend style={style.legend} image={image} />
 		</div>
 }
 

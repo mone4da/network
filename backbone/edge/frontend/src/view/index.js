@@ -1,7 +1,6 @@
 import Component from './component'
 import Header from './header'
 import Content from './content'
-import Footer from './footer'
 
 import style from './style'
 import asset from './asset'

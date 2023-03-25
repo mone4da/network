@@ -18,38 +18,37 @@ module.exports = {
 					id: 'us',
 					url: './asset/us.svg',
 					name: 'USA',
-					position: {x: 20, y: 100}
+					position: {x: 20, y: 100},
+					location: 'http://209.126.87.46:3002'
 				},
 				{
 					id: 'gb',
 					url: 'asset/gb.svg',
 					name: 'United Kingdom',
-					position: {x: 160, y: 50}
+					position: {x: 160, y: 50},
+					location: 'http://149.102.150.233:3002'
 				},
 				{
 					id: 'de',
 					url: './asset/de.svg',
 					name: 'Germany',
-					position: {x: 300, y: 100}
+					position: {x: 300, y: 100},
+					location: 'http://217.76.52.255:3002'
 				},
 				{
 					id: 'sg',
 					url: './asset/sg.svg',
 					name: 'Singapore',
-					position: {x: 300, y: 200}
+					position: {x: 300, y: 200},
+					location: 'http://194.233.89.26:3002'
 				},
 				{
 					id: 'au',
 					url: './asset/au.svg',
 					name: 'Australia',
-					position: {x: 20, y: 200}
+					position: {x: 20, y: 200},
+					location: 'http://154.26.154.29:3002'
 				}
-		],
-		links: [
-			{a:{id: 'us', x:  40, y: 120}, b:{id:'gb', x:180, y: 70}},
-			{a:{id: 'gb', x: 180, y: 70}, b:{id:'de', x:320, y: 120}},
-			{a:{id: 'de', x: 320, y: 120}, b:{id: 'sg', x:320, y: 220}},
-			{a:{id:'sg', x: 320, y: 220}, b:{id: 'au', x:40, y: 220}}
 		]
 	},
 
