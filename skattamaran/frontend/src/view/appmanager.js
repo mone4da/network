@@ -1,4 +1,7 @@
-
+/*import Appbar from './appbar'
+import Search from './search'
+import Connection from './connection'
+import Whiteboard from './whiteboard'*/
 
 let AppManager = props => {
 	let {
@@ -8,9 +11,8 @@ let AppManager = props => {
 		onUpdate,
 		event} = props
 
-	return
-		<>
-			{state.user.apps.map( data =>
+	return	<>
+			{/*state.user.apps.map( data =>
 				<Component.App
 					data = {data}
 					Component={Component}
@@ -20,7 +22,7 @@ let AppManager = props => {
 					event={event}
 
 					onUpdate={data => onUpdate && onUpdate(data)} />)
-			}
+			*/}
 		</>
 
 }

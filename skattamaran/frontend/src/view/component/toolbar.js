@@ -69,6 +69,7 @@ let Toolbar = props => {
 			padding: '2px',
 
 			border: 'solid black 1px',
+			borderRadius: '2px',
 
 			userSelect: 'none'
 			}}>

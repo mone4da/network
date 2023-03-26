@@ -24,14 +24,14 @@ let View = props => {
 				asset = {asset.menu}
 				onSelection={handleMenu}/>
 
-			<AppManager
+			{/*<AppManager
 				apps={apps}
 				Component={Component}
 				state={state}
 				style={style}
 				asset={asset}
 				event={event}
-				onUpdate={(data,id) => onUpdate && onUpdate(data,id)} />
+				onUpdate={(data,id) => onUpdate && onUpdate(data,id)} />*/}
 		</div>
 	)
 }
