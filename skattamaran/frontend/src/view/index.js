@@ -16,8 +16,11 @@ let View = props => {
 		setAppTypes(list => list.indexOf(type) < 0 ? [...list, type] : list)
 	}
 
+
 	return (
 		<div style={style}>
+			{state.system.copyright}
+
 			<Menu
 				Component={Component}
 				asset = {asset.menu}

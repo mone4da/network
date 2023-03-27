@@ -13,6 +13,11 @@ let Menu = props => {
 			grabber = {{width: '40px'}}
 			icon={asset.icon}
 		>
+
+			<Component.Icon
+				icon = './asset/logo.svg'
+			/>
+
 			<Component.Button
 				icon = './asset/app.svg'
 				onClick = {() => handleButton('app')}
