@@ -13,8 +13,8 @@ let App = props => {
 	let [state, setState] = useState(model.state)
 	let [event, setEvent] = useState({source:'', data:''})
 
-	let handleUpdate = data => {
-		setState(state => data)
+	let handleUpdate = (data,id) => {
+		//setState(state => data)
 	}
 
 	model.onUpdate = (data, source) => {

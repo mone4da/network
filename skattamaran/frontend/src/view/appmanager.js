@@ -1,29 +1,27 @@
-/*import Appbar from './appbar'
-import Search from './search'
-import Connection from './connection'
-import Whiteboard from './whiteboard'*/
+import AppRoom from './approom'
+import ComponentRoom from './componentroom'
+import Studio from './studio'
 
 let AppManager = props => {
 	let {
+		types,
 		Component,
 		state,
-		asset,style,
+		asset,
+		style,
 		onUpdate,
 		event} = props
 
-	return	<>
-			{/*state.user.apps.map( data =>
-				<Component.App
-					data = {data}
-					Component={Component}
-					state={state}
-					style={style}
-					asset={asset}
-					event={event}
+	return (<>
+		{types.map(name => {
+			switch(name){
+				case 'app' : return <AppRoom Component={Component} asset = {asset.approom} />;
+				case 'component' : return <ComponentRoom Component={Component} asset = {asset.componentroom} />;
+				case 'studio' : return <Studio Component={Component} asset = {asset.studio} />;
+			}
+		})}
+		</>)
 
-					onUpdate={data => onUpdate && onUpdate(data)} />)
-			*/}
-		</>
 
 }
 

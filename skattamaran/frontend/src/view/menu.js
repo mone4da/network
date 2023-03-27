@@ -6,7 +6,7 @@ let Menu = props => {
 		onSelection && onSelection(id)
 	}
 
-	return	<Component.Toolbar
+	return <Component.Toolbar
 			offset={{x: 20, y: 20}}
 			height='40px'
 			width = '200px'
@@ -28,12 +28,7 @@ let Menu = props => {
 				onClick = {() => handleButton('studio')}
 			/>
 
-			<Component.Button
-				icon = './asset/appbar.svg'
-				onClick = {() => handleButton('appbar')}
-			/>
-
-		</Component.Toolbar>
+	</Component.Toolbar>
 
 }
 
