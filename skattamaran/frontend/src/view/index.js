@@ -1,9 +1,7 @@
 import {useState} from 'react'
 
 import Component from './component'
-
 import Menu from './menu'
-
 import AppManager from './appmanager'
 
 import style from './style'
@@ -38,10 +36,3 @@ let View = props => {
 }
 
 export default View
-
-
-/*switch(type){
-	case 'app': setApps(apps => apps.indexOf(type) < 0 ? [...apps,  <AppRoom Component={Component} asset = {asset.approom} />] : apps); break;
-	case 'component': setApps(apps => apps.indexOf(type) < 0 ? [... apps,  <ComponentRoom Component={Component} asset = {asset.componentroom} />] : apps); break;
-	case 'studio': setApps(apps => apps.indexOf(type) < 0 ? [...apps,  <Studio Component={Component} asset = {asset.studio} />] : apps); break;
-}*/
