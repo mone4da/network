@@ -11,11 +11,12 @@ let Content = props => {
 }
 
 const ComponentRoom = props => {
-	let Component = props.Component
-	let asset = props.asset
+	let {Component, asset, onFocused, onDragged, offset} = props
 
 	return <Component.Window
-			offset={{x: 200, y: 200}}
+			onFocused={onFocused}
+			onDragged={onDragged}
+			offset={offset}
 			icon={asset.icon}>
 		<Content />
 	</Component.Window>
