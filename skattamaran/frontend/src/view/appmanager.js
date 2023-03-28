@@ -3,11 +3,11 @@ import AppRoom from './approom'
 import ComponentRoom from './componentroom'
 import Studio from './studio'
 
-let renderApp = (name, Component, asset, offset, onFocused, onDragged) => {
+let renderApp = (name, Component, asset, offset, onFocused, onDragged, onClose) => {
 	switch(name){
-		case 'app' : return  <AppRoom Component={Component} asset = {asset.approom} offset={offset}  onFocused={onFocused} onDragged={onDragged} />
-		case 'component' : return<ComponentRoom Component={Component} asset = {asset.componentroom} offset={offset} onFocused={onFocused} onDragged={onDragged}/>
-		case 'studio' : return <Studio Component={Component} asset = {asset.studio} offset={offset} onFocused={onFocused} onDragged={onDragged}/>
+		case 'app' : return  <AppRoom Component={Component} asset = {asset.approom} offset={offset}  onFocused={onFocused} onDragged={onDragged} onClose={onClose} />
+		case 'component' : return<ComponentRoom Component={Component} asset = {asset.componentroom} offset={offset} onFocused={onFocused} onDragged={onDragged} onClose={onClose}/>
+		case 'studio' : return <Studio Component={Component} asset = {asset.studio} offset={offset} onFocused={onFocused} onDragged={onDragged} onClose={onClose}/>
 	}
 
 	return null
@@ -23,7 +23,8 @@ let AppManager = props => {
 		onUpdate,
 		event,
 		onFocused,
-		onDragged} = props
+		onDragged,
+		onClose} = props
 
 
 	let handleFocused = (id, offset) => {
@@ -35,6 +36,10 @@ let AppManager = props => {
 
 	}
 
+	let handleClose = id => {
+		onClose && onClose(id)
+	}
+
 
 	return <>{types.map(data => renderApp(
 					data.id,
@@ -42,7 +47,8 @@ let AppManager = props => {
 					asset,
 					data.offset,
 					offset=>handleFocused(data.id, offset),
-					offset => handleDragged(data.id, offset)
+					offset => handleDragged(data.id, offset),
+					() => handleClose(data.id)
 				)
 			)}</>
 

@@ -28,6 +28,10 @@ let View = props => {
 		setAppTypes( list => list.map(data => data.id === id ? {id, offset} : data) )
 	}
 
+	let handleClose = id => {
+		setAppTypes( list => list.filter(data => data.id !== id) )
+	}
+
 
 	return (
 		<div style={style}>
@@ -45,7 +49,8 @@ let View = props => {
 				event={event}
 				onUpdate={(data,id) => onUpdate && onUpdate(data,id)}
 				onFocused={handleFocused}
-				onDragged={handleDragged}/>
+				onDragged={handleDragged}
+				onClose={handleClose}/>
 
 			<Menu
 				Component={Component}

@@ -18,8 +18,6 @@ let Holder = props => {
 let Window = props => {
 	let [offset, setOffset] = useState(props.offset || {x:0, y:0})
 
-	console.log(offset)
-
 	let handleFocus = () => {
 		props.onFocused && props.onFocused(offset)
 	}
