@@ -11,12 +11,12 @@ let Content = props => {
 }
 
 const AppRoom = props => {
-	let {Component, asset, onFocused, onDragged, offset, onClose} = props
+	let {Component, asset, offset, onFocused, onDragged, onClose} = props
 
 	return <Component.Window
+			offset={offset}
 			onFocused={onFocused}
 			onDragged={onDragged}
-			offset={offset}
 			icon={asset.icon}>
 		<Content onClose={onClose} />
 	</Component.Window>

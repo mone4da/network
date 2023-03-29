@@ -3,6 +3,10 @@ import Draggable from 'react-draggable'
 
 let Toolbar = props => {
 	let offset = props.offset || {x:0, y:0}
+
+	let handleFocus = () => {
+	}
+
 	return	<Draggable defaultPosition={offset}>
 			<div style={{
 			display: 'flex',
@@ -21,7 +25,9 @@ let Toolbar = props => {
 
 			userSelect: 'none',
 			backgroundColor: 'white'
-			}}>
+			}}
+			tabIndex = {props.tabIndex || 0}
+			onFocus={handleFocus}>
 				{props.children}
 			</div>
 		</Draggable>

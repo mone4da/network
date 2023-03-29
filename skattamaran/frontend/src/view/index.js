@@ -14,22 +14,16 @@ let View = props => {
 	let [appTypes, setAppTypes] = useState(state.user.apps)
 
 	let handleMenu = type => {
-		setAppTypes( list => list.indexOf(type) < 0 ? [...list,  {id: type, offset: {x: 100, y: 100}}] : list )
+		setAppTypes( list => list.indexOf(type) < 0 ? [...list,  type] : list )
 	}
 
-	let handleFocused = (id, offset) => {
-		setAppTypes(list => {
-			//let last = list.find(item => item.id === id)
-			return [...list.filter(data => data.id !== id), {id, offset}]
-		})
+	let handleFocused = id => {
+		setAppTypes(list =>  [...list.filter(type => type !== id), id] )
 	}
 
-	let handleDragged = (id, offset) => {
-		setAppTypes( list => list.map(data => data.id === id ? {id, offset} : data) )
-	}
 
 	let handleClose = id => {
-		setAppTypes( list => list.filter(data => data.id !== id) )
+		setAppTypes( list => list.filter(type => type !== id) )
 	}
 
 
@@ -49,7 +43,6 @@ let View = props => {
 				event={event}
 				onUpdate={(data,id) => onUpdate && onUpdate(data,id)}
 				onFocused={handleFocused}
-				onDragged={handleDragged}
 				onClose={handleClose}/>
 
 			<Menu

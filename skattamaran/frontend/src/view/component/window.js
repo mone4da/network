@@ -16,20 +16,19 @@ let Holder = props => {
 }
 
 let Window = props => {
-	let [offset, setOffset] = useState(props.offset || {x:0, y:0})
+	let offset = props.offset || {x:0, y:0}
 
 	let handleFocus = () => {
-		props.onFocused && props.onFocused(offset)
+		props.onFocused && props.onFocused()
 	}
 
-	let handleDragged = e => {
-		props.onDragged && props.onDragged({x: e.clientX, y: e.clientY})
+	let handleStop = e => {
+		props.onDragged && props.onDragged( {x: e.clientX - e.offsetX, y: e.clientY - e.offsetY} )
 	}
 
 	return	<Draggable
 			defaultPosition={offset}
-			onStop = {handleDragged}
-			>
+			onStop = {handleStop} >
 			<div style={{
 			display: 'flex',
 			flexDirection: 'row',
