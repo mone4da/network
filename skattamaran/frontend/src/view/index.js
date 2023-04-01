@@ -12,9 +12,14 @@ let View = props => {
 	let {state, event, onUpdate} = props
 
 	let [appTypes, setAppTypes] = useState(state.user.apps)
+	let [showMenu, setShowMenu] = useState(true)
 
 	let handleMenu = type => {
 		setAppTypes( list => list.indexOf(type) < 0 ? [...list,  type] : list )
+	}
+
+	let handleShowMenu = visible => {
+		setShowMenu(visible)
 	}
 
 	let handleFocused = id => {
@@ -28,7 +33,7 @@ let View = props => {
 
 
 	return (
-		<div style={style}>
+		<div style={style} onClick={() => handleShowMenu(true)}>
 			<Copyright
 				style={style.organisation.copyright}
 				content={state.system.copyright}
@@ -46,9 +51,11 @@ let View = props => {
 				onClose={handleClose}/>
 
 			<Menu
+				visible={showMenu}
 				Component={Component}
 				asset = {asset.menu}
-				onSelection={handleMenu} />
+				onSelection={handleMenu}
+				onHide={() => handleShowMenu(false)}/>
 		</div>
 	)
 }

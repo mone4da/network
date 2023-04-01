@@ -22,13 +22,17 @@ let Window = props => {
 		props.onFocused && props.onFocused()
 	}
 
-	let handleStop = e => {
+	let handleDragging = e => {
 		props.onDragged && props.onDragged( {x: e.clientX - e.offsetX, y: e.clientY - e.offsetY} )
+	}
+
+	let handleClick = e => {
+		e.stopPropagation()
 	}
 
 	return	<Draggable
 			defaultPosition={offset}
-			onStop = {handleStop} >
+			onDrag = {handleDragging} >
 			<div style={{
 			display: 'flex',
 			flexDirection: 'row',
@@ -49,7 +53,8 @@ let Window = props => {
 			}}
 
 			tabIndex={props.tabIndex || 0}
-			onFocus={handleFocus}>
+			onFocus={handleFocus}
+			onClick={e => handleClick(e)}>
 				<Holder
 					icon={props.icon}
 					width={(props.grabber && props.grabber.width) || '30px'}

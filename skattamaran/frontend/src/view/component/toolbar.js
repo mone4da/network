@@ -27,7 +27,8 @@ let Toolbar = props => {
 			backgroundColor: 'white'
 			}}
 			tabIndex = {props.tabIndex || 0}
-			onFocus={handleFocus}>
+			onFocus={handleFocus}
+			onClick={e => e.stopPropagation()}>
 				{props.children}
 			</div>
 		</Draggable>
@@ -36,6 +37,11 @@ let Toolbar = props => {
 
 
 let Button = props => {
+	let handleClick = e => {
+		props.onClick && props.onClick()
+		e.stopPropagation()
+	}
+
 	return <img
 			style = {{
 				height: props.height || '30px',
@@ -43,7 +49,7 @@ let Button = props => {
 				cursor: 'pointer'
 			}}
 			src = {props.icon}
-			onClick = {() => props.onClick && props.onClick()}
+			onClick = {e => handleClick(e) }
 		/>
 }
 

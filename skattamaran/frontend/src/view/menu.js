@@ -1,15 +1,22 @@
 
+import {useState} from 'react'
+
 let Menu = props => {
-	let {Component, asset, onSelection} = props
+	let {Component, asset, onSelection, visible, onHide} = props
 
 	let handleButton = id => {
 		onSelection && onSelection(id)
 	}
 
-	return <Component.Toolbar
+	let handleHide = () => {
+		onHide && onHide()
+	}
+
+
+	return visible && <Component.Toolbar
 			offset={{x: 20, y: 20}}
 			height='40px'
-			width = '200px'
+			width = '240px'
 			grabber = {{width: '40px'}}
 			icon={asset.icon}
 		>
@@ -31,6 +38,17 @@ let Menu = props => {
 			<Component.Button
 				icon = './asset/studio.svg'
 				onClick = {() => handleButton('studio')}
+			/>
+
+			<Component.Button
+				icon = './asset/cli.svg'
+				onClick = {() => handleButton('cli')}
+			/>
+
+
+			<Component.Button
+				icon = './asset/hide.svg'
+				onClick = {() => handleHide()}
 			/>
 
 	</Component.Toolbar>

@@ -14,6 +14,10 @@ const asset = {
 
 	studio: {
 		icon: './asset/studio.svg'
+	},
+
+	cli : {
+		icon: './asset/cli.svg'
 	}
 
 
