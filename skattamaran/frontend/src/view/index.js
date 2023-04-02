@@ -19,7 +19,7 @@ let View = props => {
 	}
 
 	let handleShowMenu = visible => {
-		setShowMenu(visible)
+		setShowMenu(visible => !visible)
 	}
 
 	let handleFocused = id => {
@@ -54,8 +54,7 @@ let View = props => {
 				visible={showMenu}
 				Component={Component}
 				asset = {asset.menu}
-				onSelection={handleMenu}
-				onHide={() => handleShowMenu(false)}/>
+				onSelection={handleMenu} />
 		</div>
 	)
 }

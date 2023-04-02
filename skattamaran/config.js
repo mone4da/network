@@ -2,7 +2,12 @@ module.exports = {
 	app : {
 		greeting: 'app on',
 		port: 8080,
-		content: './frontend/build'
+		content: './frontend/build',
+
+		security: {
+			key: './security/key.pem',
+			cert: './security/cert.pem'
+		}
 	},
 
 	sessionmanager : {
