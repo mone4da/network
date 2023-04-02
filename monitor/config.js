@@ -2,7 +2,12 @@ module.exports = {
 	app : {
 		greeting: 'app on',
 		port: 3002,
-		content: './frontend/build'
+		content: './frontend/build',
+
+		security: {
+			key: './security/key.pem',
+			cert: './security/cert.pem'
+		}
 	},
 
 	sessionmanager : {
@@ -26,7 +31,7 @@ module.exports = {
 					url: 'asset/gb.svg',
 					name: 'United Kingdom',
 					position: {x: 160, y: 50},
-					location: 'http://149.102.150.233:3002'
+					location: 'https://149.102.150.233:3002'
 				},
 				{
 					id: 'de',

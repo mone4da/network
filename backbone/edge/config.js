@@ -1,7 +1,7 @@
 module.exports = {
 	app : {
 		greeting: 'app on',
-		port: 3002,
+		port: 3022,
 		content: './frontend/build'
 	},
 

@@ -1,19 +1,13 @@
-const http = require('https')
+const http = require('http')
 const xpr = require('express')
 const {Server} = require('socket.io')
-const fs = require('fs')
 
 
 class Desk{
 	constructor(config){
 		this.app = xpr()
 
-		let httpOptions = {
-			key: fs.readFileSync(config.app.security.key),
-			cert: fs.readFileSync(config.app.security.cert)
-		}
-
-		this.server = http.createServer(httpOptions, this.app)
+		this.server = http.createServer(this.app)
 
 		this.app.use(xpr.static(config.app.content))
 

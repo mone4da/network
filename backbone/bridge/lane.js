@@ -3,9 +3,9 @@ const dgram = require('node:dgram')
 const Relay = require('./relay')
 
 const { data, path } = workerData
-const { port, family, hosts } = data
+const { id, port, family, hosts } = data
 
-const relays = hosts.map(({family, port, address}) => new Relay(family, address, port) )
+const relays = hosts.map(({id, family, port, address}) => new Relay(id, family, address, port) )
 
 let forward = data => {
   relays.forEach(relay => {
