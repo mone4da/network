@@ -71,6 +71,12 @@ class Primes{
 		return this.size === 0
 	}
 
+	contains(p){
+		for(let i=0; i < this.list.length; i++)
+			if (this.list[i] % p === 0)
+				return i
+		return -1
+	}
 }
 
 module.exports = {Primes, generatePrimes}

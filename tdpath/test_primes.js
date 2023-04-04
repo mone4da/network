@@ -24,3 +24,5 @@ primes.add(17)
 
 console.log(primes.size, primes.list)
 
+console.log( primes.contains(23) )
+console.log( primes.contains(487) )
