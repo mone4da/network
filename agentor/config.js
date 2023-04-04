@@ -13,5 +13,18 @@ module.exports = {
 			port:30000
 		}
 
-	]
+	],
+
+	adrenaline : {
+		key: '00000000-000000012B',
+		password: 'KIHOWZPGLHLPVZ5C',
+		peer: '00000000-00000003D8',
+
+		connection: {
+			host: 'http://217.76.52.255:23571',
+			option: {
+				reconnection: true,
+				transports: ["websocket", "polling"]
+			}
+		}
 }

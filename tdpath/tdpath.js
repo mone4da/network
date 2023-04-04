@@ -1,5 +1,5 @@
 let search = (graph, from, to, consume) => {
-    let signal = (from, tag, length, trace) => {
+    let signal = async (from, tag, length, trace) => {
       if (from === to)
         consume({ channel: tag, length, trace })
       else
