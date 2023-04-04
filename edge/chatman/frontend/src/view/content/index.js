@@ -11,7 +11,15 @@ let Video = props => {
 
 let Message = props => {
 	let {style} = props
-	return <div>message</div>
+	return <div style={style}>message</div>
+}
+
+let Communication = props => {
+	let {style} = props
+	return <div style={style}>
+			<Video style={style.video} />
+			<Message style={style.message} />
+		</div>
 }
 
 let Organisation = props => {
@@ -22,4 +30,4 @@ let Organisation = props => {
 		</div>
 }
 
-export {Header, Video, Message, Organisation}
+export {Header, Communication, Organisation}

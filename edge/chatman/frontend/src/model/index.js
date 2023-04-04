@@ -21,7 +21,7 @@ class Model{
 			this.state.system.region = config.data.region
 			this.state.system.copyright = config.data.copyright
 
-			this.session = new Session( data => this.onUpdate && this.onUpdate(data, 'session') )
+			//this.session = new Session( data => this.onUpdate && this.onUpdate(data, 'session') )
 		}
 
 
