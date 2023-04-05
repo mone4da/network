@@ -1,5 +1,5 @@
 let generate = (max, stop, end) => {
-	for (let i = j = 2; i <= max; i++, j = 2) {
+	for (var i = j = 2; i <= max; i++, j = 2) {
 
 		while (j < i && i % j) j++
 
@@ -7,7 +7,7 @@ let generate = (max, stop, end) => {
 				return
 	}
 
-	end && end()
+	end && end(i)
 }
 
 
@@ -26,17 +26,20 @@ class Primes{
 	}
 
 	add(p){
-		if (this.current > this.list.length - 1)
-			return 0
-
 		let prev = this.list[this.current]
 		this.list[this.current] = prev * p
 
 		if (this.list[this.current] > this.max){
-			this.list[this.current++] = prev
+			this.list[this.current] = prev
 
-			if (this.current <= this.list.length - 1)
-				this.list[this.current] = p
+			if (this.current < this.list.length - 1){
+				this.size++
+				this.current++
+
+				return this.list[this.current] = p
+			}else{
+				return 0
+			}
 		}
 
 		this.size++

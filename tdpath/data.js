@@ -1,6 +1,4 @@
 
-import {generatePrimes} from './primes'
-
 let generateNodes = (size, tag) => {
 	return [...new Array(size)].map((_, i) => ({ id: tag[i], label: tag[i] + '' }))
 }
@@ -20,7 +18,7 @@ let generateEdges = nodes => {
   return edges
 }
 
-let generate = (size, tag) => {
+let generateGraph = (size, tag) => {
   let nodes = generateNodes(Math.min(size, tag.length), tag)
   return {
     nodes: nodes,
@@ -28,4 +26,4 @@ let generate = (size, tag) => {
   }
 }
 
-module.exports = {generate, generatePrimes}
+module.exports = {generateGraph}

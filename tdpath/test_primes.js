@@ -10,11 +10,12 @@ let benchmark = last => {
 }
 
 
-let primes = new Primes(300, 6469693230)
+let bigone = 2*3*5*7*11*13*17*19*23*29*31*37
+let primes = new Primes(8, bigone)
 
 let last = 2
 let time = Date.now()
-generate( 9999999999999, prime => {
+generate( 999999, prime => {
 	if (primes.add(prime)){
 		last = prime
 		return false
