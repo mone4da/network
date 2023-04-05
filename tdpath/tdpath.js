@@ -1,17 +1,4 @@
-let _search = (graph, from, to, consume) => {
-    let signal = async (from, tag, length, trace) => {
-      if (from === to)
-        consume({ channel: tag, length, trace })
-      else
-        for (let edge of graph.edges.filter(edge => edge.from === from && edge.from !== edge.to)) {
-	   if (trace.indexOf(edge.to) < 0){
-            signal(edge.to, [...trace, edge.to].reduce((p,a) => p*a,1) , length + 1,  [...trace, edge.to])
-	   }
-        }
-    }
-
-    signal(from, from, 0, [from])
- }
+//====== search =================
 
 let search = (graph, entry, exit, consume) => {
 
@@ -20,12 +7,8 @@ let search = (graph, entry, exit, consume) => {
         consume({ channel: tag, length, trace })
       else
         for (let edge of graph.edges.filter(edge => edge.from === from && edge.from !== edge.to)) {
-	   /*if ( (tag % edge.to !== 0) !== (trace.indexOf(edge.to) < 0))
-		   console.log(from, edge.to, (tag % edge.to) !== 0, trace.indexOf(edge.to) < 0,tag,  trace.reduce((p,a) => p*a,1), trace)*/
 
 	   if (tag % edge.to !== 0){
-	   //if (trace.indexOf(edge.to) < 0){
-		//console.log('signal')
             signal(edge.to, tag * edge.to  , length + 1,  [...trace, edge.to])
 	   }
         }
@@ -35,4 +18,66 @@ let search = (graph, entry, exit, consume) => {
  }
 
 
-module.exports = search
+//====== xearch =================
+
+class Primes{
+	constructor(list, current, size, max){
+		this.max = max
+		this.current = current
+		this.size = size
+		this.list = [...list]
+	}
+
+	add(p){
+		let prev = this.list[this.current]
+		this.list[this.current] = prev * p
+
+		if (this.list[this.current] > this.max){
+			this.list[this.current] = prev
+
+			if (this.current < this.list.length - 1){
+				this.size++
+				this.current++
+
+				this.list[this.current] = p
+				return new Primes(this.list, this.current, this.size, this.max)
+			}else{
+				return this
+			}
+		}
+
+		this.size++
+		return new Primes(this.list, this.current, this.size, this.max)
+	}
+
+
+	contains(p){
+		for(let i=0; i < this.list.length; i++)
+			if (this.list[i] % p === 0)
+				return i
+		return -1
+	}
+}
+
+
+let xearch = (graph, entry, exit, consume) => {
+    let signal = async (from, tag, length, trace) => {
+
+      if (from === exit)
+        consume({ channel: tag, length, trace })
+      else
+        for (let edge of graph.edges.filter(edge => edge.from === from && edge.from !== edge.to)) {
+
+	   if (tag && !tag.contains(edge.to)){
+            signal(edge.to, tag.add(edge.to)  , length + 1,  [...trace, edge.to])
+	   }
+        }
+    }
+
+    let bigone = 2*3*5*7*11*13*17*19*23*29*31*37
+    signal(entry, new Primes([entry],0,0, bigone ), 0, [entry])
+ }
+
+
+
+module.exports = {search, xearch}
