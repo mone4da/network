@@ -1,28 +1,26 @@
-const {Primes, generatePrimes} = require('./primes')
+const {Primes, generate} = require('./primes')
 
-let primes = new Primes(6, 6469693230)
+let benchmark = last => {
+	console.log('time', Date.now() - time)
 
-let list = generatePrimes(7000)
-
-console.log( list )
-
-
-for(prime of list){
-	let prod = primes.add(prime)
-	if (prod === 0)
-		break
+	console.log('find', last, 'in', primes.list, 'with', primes.size, 'elements')
+	time = Date.now()
+	console.log( primes.contains(last) )
+	console.log('time', Date.now() - time)
 }
 
-console.log(primes.size, primes.list )
 
+let primes = new Primes(300, 6469693230)
 
-primes.sub(17)
+let last = 2
+let time = Date.now()
+generate( 9999999999999, prime => {
+	if (primes.add(prime)){
+		last = prime
+		return false
+	}
 
-console.log(primes.size, primes.list)
+	benchmark( last )
 
-primes.add(17)
-
-console.log(primes.size, primes.list)
-
-console.log( primes.contains(23) )
-console.log( primes.contains(487) )
+	return true
+}, () => benchmark( last ) )

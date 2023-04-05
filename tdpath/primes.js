@@ -1,16 +1,15 @@
-let generatePrimes = max => {
-	let list = []
+let generate = (max, stop, end) => {
 	for (let i = j = 2; i <= max; i++, j = 2) {
 
 		while (j < i && i % j) j++
 
-		if (j === i) {
-			list.push(i);
-		}
+		if ( j === i &&	stop(i) )
+				return
 	}
 
-	return list
+	end && end()
 }
+
 
 class Primes{
 	constructor(capacity, max){
@@ -34,12 +33,10 @@ class Primes{
 		this.list[this.current] = prev * p
 
 		if (this.list[this.current] > this.max){
-			this.list[this.current] = prev
-			if (this.current < this.list.length - 1){
-				this.current++
-				this.size++
-				return this.list[this.current] = p
-			}
+			this.list[this.current++] = prev
+
+			if (this.current <= this.list.length - 1)
+				this.list[this.current] = p
 		}
 
 		this.size++
@@ -79,4 +76,4 @@ class Primes{
 	}
 }
 
-module.exports = {Primes, generatePrimes}
+module.exports = {Primes, generate}
