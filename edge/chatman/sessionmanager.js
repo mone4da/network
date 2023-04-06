@@ -1,3 +1,4 @@
+const { v4: uuidv4 } = require('uuid')
 
 class NetgateSession extends require('./netgate'){
 	constructor(config){
@@ -10,11 +11,16 @@ class SessionManager extends NetgateSession{
 	constructor(config, io){
 		super(config.netgate)
 
+		this.sessions = {}
+
 		io.on('connection', socket => this.onConnection( this.createSession(socket)))
 	}
 
-	onConnection(sesion){}
-	newSessionId(){  return Date.now() }
+	onConnection(session){
+		this.sessions[session.id] = session
+	}
+
+	newSessionId(){  return uuidv4() }
 
 	createSession( socket ){
 		return null
@@ -24,6 +30,11 @@ class SessionManager extends NetgateSession{
 		console.log(msg)
 	}
 
+	end(_){}
+	signin(_){}
+	signout(_){}
+	signal(_){}
+	reply(_){}
 }
 
 module.exports = SessionManager

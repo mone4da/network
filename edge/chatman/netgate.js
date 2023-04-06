@@ -25,6 +25,7 @@ class NetgateSession{
 	initializeIn( config, initialized ){
 		this.inChannel = dgram.createSocket(config.family)
 		this.inChannel.on('listening', () => {
+			console.log('listenin on port', config.port)
 			initialized()
 		})
 

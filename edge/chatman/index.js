@@ -2,38 +2,11 @@
 const config = require('./config')
 
 class Session extends require('./session'){
-	constructor(id, socket){
-		super(id, socket)
-	}
+	constructor(id, socket, listener){
+		super(id, socket, listener)
 
-	onInitialized(){
 		console.log('session', this.id, 'initialized ...')
-
 		this.sendIn('session', {id: this.id, data: Date.now()})
-	}
-
-	onEnd(){
-		console.log(this.id, 'ended')
-	}
-
-	onSessionSignin( data ){
-		console.log('signing', data)
-	}
-
-	onSessionSignout( data ){
-		console.log('signout', data)
-	}
-
-	onSessionSignal( data ){
-		console.log('signal', data)
-	}
-
-	onSessionReply( data ){
-		console.log('data to network', data)
-	}
-
-	onSession( data ){
-		console.log('session', data)
 	}
 
 }
@@ -48,12 +21,18 @@ class SessionManager extends require('./sessionmanager'){
 	}
 
 	createSession(socket){
-		return new Session(this.newSessionId(), socket)
+		return new Session(this.newSessionId(), socket, event => this.onSessionEvent(event))
+	}
+
+	onSessionEvent(event){
+		console.log('session event', event)
+		//remove, add, grant access, notify to others in this edge
 	}
 
 	onNetworkMessage( data, info ){
 		console.log( data )
-		this.reply( data )
+
+		//get the fields from and to. Find the session with key to. sendIn
 	}
 
 }
