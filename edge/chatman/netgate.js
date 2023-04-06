@@ -5,6 +5,8 @@ class NetgateSession{
 	constructor(session, config){
 		this.session = session
 
+		this.session.onMessage = data => this.onSessionMessage(data)
+
 		this.initializeIn(config.inchannel, () => {
 			this.initializeOut(config.outChannel, () => {
 				this.onInitialized()
@@ -34,9 +36,14 @@ class NetgateSession{
 
 	onMessage( data, info){	}
 	onInitialized(){}
+	onSessionMessage(_){}
 
 	send(data){
 		this.outChannel.send(data)
+	}
+
+	notify(data){
+		this.session.send(data)
 	}
 }
 

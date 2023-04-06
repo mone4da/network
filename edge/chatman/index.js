@@ -12,7 +12,7 @@ class NetgateSession extends require('./netgate'){
 	}
 
 	onMessage( data ){
-		//this.session.receive( data )
+		//this.notify(data)
 		console.log('receiving', data.toString())
 	}
 

@@ -13,22 +13,14 @@ class Session{
 		this.onSessionMessage && this.onSessionMessage(data)
 	}
 
-	initializeChannel(size){
-
-		  let setBit = p => (128 >> p)
-
-		  let position = Math.floor(this.id / 8)
-		  let offset = this.id % 8
-
-		  let data = [...new Array(size)].map((_, i) => i !== position ? 0 : setBit(offset))
-
-		  this.channel = data.map(v => v.toString(16).padStart(2, '0')).join('')
+	initializeChannel(){
+		let channelSize = 256
+		this.channel = [...new Array(channelSize)].map( () => 0 )
 	}
-
 
 	send(data){
 		if (this.channel){
-			this.socket.emit('data', this.channel + ':' + data)
+			this.socket.emit('data', String.fromCharCode(this.channel) + '' data)
 		}
 	}
 }
