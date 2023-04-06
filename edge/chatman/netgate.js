@@ -3,9 +3,11 @@ const dgram = require('node:dgram')
 
 class NetgateSession{
 	constructor(session, config){
+		this.edgeId = config.edgeId
+
 		this.session = session
 
-		this.session.onMessage = data => this.onSessionMessage(data)
+		this.session.onMessage = data => this.channel && this.onSessionMessage(this.channel.concat(data))
 
 		this.initializeIn(config.inchannel, () => {
 			this.initializeOut(config.outChannel, () => {
@@ -13,6 +15,15 @@ class NetgateSession{
 			})
 		})
 	}
+
+	initializeChannel(size){
+
+		  let position = Math.floor(this.edgeId / 8)
+		  let offset = this.edgeId % 8
+
+		  this.channel = [...new Array(size)].map((_, i) => i !== position ? 0 : 128 >> offset )
+	}
+
 
 	onInitialized(){}
 
@@ -43,7 +54,7 @@ class NetgateSession{
 	}
 
 	notify(data){
-		this.session.send(data)
+		this.session.notify(data)
 	}
 }
 

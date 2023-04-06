@@ -9,27 +9,22 @@ class Session{
 	}
 
 	onEnd(id){}
-	onMessage(data){
-		this.onSessionMessage && this.onSessionMessage(data)
-	}
-
-	initializeChannel(size){
-
-		  let setBit = p => (128 >> p)
-
-		  let position = Math.floor(this.id / 8)
-		  let offset = this.id % 8
-
-		  let data = [...new Array(size)].map((_, i) => i !== position ? 0 : setBit(offset))
-
-		  this.channel = data.map(v => v.toString(16).padStart(2, '0')).join('')
-	}
-
-
-	send(data){
-		if (this.channel){
-			this.socket.emit('data', this.channel + ':' + data)
+	onMessage(msg){
+		switch(msg.id){
+			case 'signin' : this.onSessionSignin(msg.data); break;
+			case 'signout' : this.onSessionSignout(msg.data); break;
+			case 'signal' :  this.onSessionSignal(msg.data); break;
+			case 'data' : this.onSessionData(msg.data); break;
 		}
+	}
+
+	this.onSessionSignin(_){}
+	this.onSessionSignout(_){}
+	this.onSessionSignal(_){}
+	this.onSessionData(_){}
+
+	notify(data){
+		this.socket.emit('data', data )
 	}
 }
 
