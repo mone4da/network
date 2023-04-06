@@ -3,7 +3,7 @@ const config = require('./config')
 
 class Session extends require('./session'){
 	constructor(id, socket){
-		super(id, socket, config.session)
+		super(id, socket)
 	}
 
 	onInitialized(){
@@ -14,11 +14,6 @@ class Session extends require('./session'){
 
 	onEnd(){
 		console.log(this.id, 'ended')
-	}
-
-	onNetworkMessage( data, info ){
-		console.log( data )
-		this.reply( data )
 	}
 
 	onSessionSignin( data ){
@@ -45,7 +40,7 @@ class Session extends require('./session'){
 
 class SessionManager extends require('./sessionmanager'){
 	constructor(io){
-		super(io)
+		super(config.sessionmanager, io)
 	}
 
 	onInitialized(){
@@ -55,6 +50,12 @@ class SessionManager extends require('./sessionmanager'){
 	createSession(socket){
 		return new Session(this.newSessionId(), socket)
 	}
+
+	onNetworkMessage( data, info ){
+		console.log( data )
+		this.reply( data )
+	}
+
 }
 
 class App extends require('./desk'){

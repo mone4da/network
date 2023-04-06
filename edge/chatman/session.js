@@ -1,20 +1,6 @@
- 
-class NetgateSession extends require('./netgate'){
-	constructor(config){
-		super(config)
-	}
 
-	onInitialized(){
-		let address = socket.address()
-		console.log(address)
-	}
-}
-
-
-class Session extends NetgateSession{
-	constructor(id, socket, config){
-		super(config.netgate)
-
+class Session{
+	constructor(id, socket){
 		this.id = id
 		this.socket = socket
 	}
@@ -30,7 +16,6 @@ class Session extends NetgateSession{
 	}
 
 	onEnd(){}
-	onNetworkMessage(msg, info){}
 	onSessionSignin(_){}
 	onSessionSignout(_){}
 	onSessionSignal(_){}

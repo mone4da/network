@@ -11,17 +11,7 @@ module.exports = {
 	},
 
 	sessionmanager : {
-		greeting: 'session manager on'
-	},
-
-	session: {
-		copyright: '4 Digital Asset © 2023',
-		time: Date.now(),
-		region: {
-			id: 'de',
-			name: 'Germany',
-			icon: './asset/de.svg'
-		},
+		greeting: 'session manager on at ' + Date.now(),
 
 		netgate: {
 			edgeId: 2,
@@ -36,6 +26,16 @@ module.exports = {
 				port: 20000,
 				host: 'localhost'
 			}
+		}
+	},
+
+	session: {
+		copyright: '4 Digital Asset © 2023',
+		time: Date.now(),
+		region: {
+			id: 'de',
+			name: 'Germany',
+			icon: './asset/de.svg'
 		}
 
 	},
