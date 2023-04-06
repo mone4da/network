@@ -5,7 +5,7 @@ class NetgateSession{
 		this.edgeId = config.edgeId
 
 		this.initializeIn(config.inchannel, () => {
-			this.initializeOut(config.outChannel, () => {
+			this.initializeOut(config.outchannel, () => {
 				this.onInitialized()
 			})
 		})
@@ -29,7 +29,8 @@ class NetgateSession{
 		})
 
 		this.inChannel.on('message', (data, info) => {
-			this.onNetworkMessage(data, info)
+			console.log('network message', data)
+			this.onNetworkMessage(data.slice(8), info)
 		})
 
 		this.inChannel .bind(config.port)

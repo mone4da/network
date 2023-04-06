@@ -1,6 +1,4 @@
 
-const Session = require('./session')
-
 class SessionManager{
 	constructor(io){
 		io.on('connection', socket => this.onConnection( this.createSession(socket)))
@@ -13,7 +11,7 @@ class SessionManager{
 	newSessionId(){  return Date.now() }
 
 	createSession( socket ){
-		return new Session(this.newSessionId(), socket)
+		return null
 	}
 }
 

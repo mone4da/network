@@ -22,29 +22,26 @@ class Session extends NetgateSession{
 	onInitialized(){
 		super.onInitialized()
 
-		this.socket.on('disconnect',() => this.onEnd(id))
-		this.socket.on('data', data => this.onMessage(data))
+		this.socket.on('disconnect',() => this.onEnd())
+		this.socket.on('signin', data => this.onSessionSignin(data))
+		this.socket.on('signout', data => this.onSessionSigniout(data))
+		this.socket.on('signal', data => this.onSessionSignal(data))
+		this.socket.on('reply', data => this.onSessionReply(data))
 	}
 
-	onEnd(id){}
-	onMessage(msg){
-		switch(msg.id){
-			case 'signin' : this.onSessionSignin(msg.data); break;
-			case 'signout' : this.onSessionSignout(msg.data); break;
-			case 'signal' :  this.onSessionSignal(msg.data); break;
-			case 'data' : this.onSessionData(msg.data); break;
-		}
-	}
-
+	onEnd(){}
 	onNetworkMessage(msg, info){}
-
 	onSessionSignin(_){}
 	onSessionSignout(_){}
 	onSessionSignal(_){}
-	onSessionData(_){}
+	onSessionReply(_){}
 
-	notify( data ){
-		this.socket.emit('data', data.slice(this.channelSize))
+	sendIn(id, data ){
+		this.socket.emit(id, data)
+	}
+
+	reply(data){
+		this.sendIn('reply', data)
 	}
 }
 

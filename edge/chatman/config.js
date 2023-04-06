@@ -24,6 +24,8 @@ module.exports = {
 		},
 
 		netgate: {
+			edgeId: 2,
+
 			inchannel: {
 				family: 'udp4',
 				port: 20001

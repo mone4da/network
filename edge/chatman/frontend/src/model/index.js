@@ -1,11 +1,18 @@
 import Session from './session'
 import Rest from './rest'
 
-class Model{
+class Model extends Session{
 	constructor( initialized ){
+		super()
+
 		this.state = {
 			system: {},
-			user: {}
+			user: {
+				access: {
+					key: 'the key',
+					password: 'the password'
+				}
+			}
 		}
 		this.initialize( initialized )
 	}
@@ -21,7 +28,7 @@ class Model{
 			this.state.system.region = config.data.region
 			this.state.system.copyright = config.data.copyright
 
-			//this.session = new Session( data => this.onUpdate && this.onUpdate(data, 'session') )
+			this.connect({ path: '/', options: {  transports: ['websocket', 'polling'] }} )
 		}
 
 
@@ -30,6 +37,50 @@ class Model{
 
 	async loadConfig(){
 		return await this.rest.config()
+	}
+
+	sendAIAIUCHE2(from, to) {
+		this.reply(
+			from,
+			to, {
+				'subject': 'AIAUCHE2',
+				'detail': 'AIAUCHE2'
+		})
+
+	}
+
+
+	// Event
+	onConnection() {
+		console.log( 'connected' )
+	}
+
+	onDisconnection() {
+		console.log('disconnected')
+	}
+
+	onConnectionError(error) {
+		console.log('connection error', error)
+	}
+
+	onSession(data) {
+		console.log('on session', data)
+		this.signin(
+			this.state.user.access.key,
+			this.state.user.access.password
+		)
+	}
+
+	onGranted(data) {
+		console.log('granted', data)
+	}
+
+	onDenied(data) {
+		console.log('denied', data)
+	}
+
+	onReply(data) {
+		console.log('reply', data)
 	}
 }
 

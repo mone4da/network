@@ -9,16 +9,16 @@ class Session extends require('./session'){
 	onInitialized(){
 		console.log('session', this.id, 'initialized ...')
 
-		this.notify({id: this.id, data: 'greeting'})
+		this.sendIn('session', {id: this.id, data: Date.now()})
 	}
 
-	onEnd(id){
-		console.log(id, 'ended')
+	onEnd(){
+		console.log(this.id, 'ended')
 	}
 
 	onNetworkMessage( data, info ){
 		console.log( data )
-		this.notify( data )
+		this.reply( data )
 	}
 
 	onSessionSignin( data ){
@@ -33,8 +33,12 @@ class Session extends require('./session'){
 		console.log('signal', data)
 	}
 
-	onSessionData( data ){
+	onSessionReply( data ){
 		console.log('data to network', data)
+	}
+
+	onSession( data ){
+		console.log('session', data)
 	}
 
 }
@@ -49,7 +53,7 @@ class SessionManager extends require('./sessionmanager'){
 	}
 
 	createSession(socket){
-		return new new Session(this.newSessionId(), socket)
+		return new Session(this.newSessionId(), socket)
 	}
 }
 
