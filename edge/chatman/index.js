@@ -3,7 +3,7 @@ const config = require('./config')
 
 class Session extends require('./session'){
 	constructor(id, socket){
-		super(id, socket)
+		super(id, socket, config.session)
 	}
 
 	onInitialized(){

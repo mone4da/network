@@ -12,7 +12,7 @@ class NetgateSession extends require('./netgate'){
 
 
 class Session extends NetgateSession{
-	constructor(id, socket){
+	constructor(id, socket, config){
 		super(config.netgate)
 
 		this.id = id

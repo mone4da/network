@@ -21,19 +21,21 @@ module.exports = {
 			id: 'de',
 			name: 'Germany',
 			icon: './asset/de.svg'
-		}
-	},
-
-	netgate: {
-		inchannel: {
-			family: 'udp4',
-			port: 20001
 		},
 
-		outchannel: {
-			family: 'udp4',
-			port: 20000,
-			host: 'localhost'
+		netgate: {
+			inchannel: {
+				family: 'udp4',
+				port: 20001
+			},
+
+			outchannel: {
+				family: 'udp4',
+				port: 20000,
+				host: 'localhost'
+			}
 		}
-	}
+
+	},
+
 }
