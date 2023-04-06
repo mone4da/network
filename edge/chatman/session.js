@@ -1,10 +1,28 @@
+ 
+class NetgateSession extends require('./netgate'){
+	constructor(config){
+		super(config)
+	}
 
-class Session{
+	onInitialized(){
+		let address = socket.address()
+		console.log(address)
+	}
+}
+
+
+class Session extends NetgateSession{
 	constructor(id, socket){
+		super(config.netgate)
+
 		this.id = id
 		this.socket = socket
-		this.socket.on('disconnect',() => this.onEnd(id))
+	}
 
+	onInitialized(){
+		super.onInitialized()
+
+		this.socket.on('disconnect',() => this.onEnd(id))
 		this.socket.on('data', data => this.onMessage(data))
 	}
 
@@ -18,13 +36,15 @@ class Session{
 		}
 	}
 
-	this.onSessionSignin(_){}
-	this.onSessionSignout(_){}
-	this.onSessionSignal(_){}
-	this.onSessionData(_){}
+	onNetworkMessage(msg, info){}
 
-	notify(data){
-		this.socket.emit('data', data )
+	onSessionSignin(_){}
+	onSessionSignout(_){}
+	onSessionSignal(_){}
+	onSessionData(_){}
+
+	notify( data ){
+		this.socket.emit('data', data.slice(this.channelSize))
 	}
 }
 

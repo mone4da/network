@@ -1,13 +1,8 @@
-const config = require('./config')
 const dgram = require('node:dgram')
 
 class NetgateSession{
-	constructor(session, config){
+	constructor(config){
 		this.edgeId = config.edgeId
-
-		this.session = session
-
-		this.session.onMessage = data => this.channel && this.onSessionMessage(this.channel.concat(data))
 
 		this.initializeIn(config.inchannel, () => {
 			this.initializeOut(config.outChannel, () => {
@@ -34,7 +29,7 @@ class NetgateSession{
 		})
 
 		this.inChannel.on('message', (data, info) => {
-			this.onMessage(data, info)
+			this.onNetworkMessage(data, info)
 		})
 
 		this.inChannel .bind(config.port)
@@ -45,17 +40,13 @@ class NetgateSession{
 		this.outChannel.connect( config.port, config.host, initialized )
 	}
 
-	onMessage( data, info){	}
+	onNetworkMessage( data, info){	}
 	onInitialized(){}
-	onSessionMessage(_){}
 
 	send(data){
 		this.outChannel.send(data)
 	}
 
-	notify(data){
-		this.session.notify(data)
-	}
 }
 
 module.exports = NetgateSession

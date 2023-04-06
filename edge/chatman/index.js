@@ -1,56 +1,42 @@
 
 const config = require('./config')
 
-class NetgateSession extends require('./netgate'){
-	constructor(session){
-		super(session, config.netgate)
-	}
-
-	onInitialized(){
-		let address = socket.address()
-		console.log(address)
-	}
-
-	onMessage( data ){
-		//this.notify(data)
-		console.log('receiving', data.toString())
-	}
-
-	onSessionMessage( data ){
-		//this.send( data )
-		console.log('sending', data.toString())
-	}
-
-}
-
 class Session extends require('./session'){
 	constructor(id, socket){
 		super(id, socket)
-
-		console.log('session', id)
-
-		this.notifying()
-
-		this.netgate = new Netgate( data => this.onNetMessage(data))
-
 	}
 
-	onNetMessage( data ){
-		console.log( data )
+	onInitialized(){
+		console.log('session', this.id, 'initialized ...')
+
+		this.notify({id: this.id, data: 'greeting'})
 	}
 
 	onEnd(id){
 		console.log(id, 'ended')
 	}
 
-	onMessage(data){
-		console.log(data, 'into', this.id)
-		console.log(data,'out of', this.id)
-		this.send(data)
+	onNetworkMessage( data, info ){
+		console.log( data )
+		this.notify( data )
 	}
 
-	notifying(){
+	onSessionSignin( data ){
+		console.log('signing', data)
 	}
+
+	onSessionSignout( data ){
+		console.log('signout', data)
+	}
+
+	onSessionSignal( data ){
+		console.log('signal', data)
+	}
+
+	onSessionData( data ){
+		console.log('data to network', data)
+	}
+
 }
 
 class SessionManager extends require('./sessionmanager'){
@@ -63,7 +49,7 @@ class SessionManager extends require('./sessionmanager'){
 	}
 
 	createSession(socket){
-		return new NetgateSession(new Session(this.newSessionId(), socket))
+		return new new Session(this.newSessionId(), socket)
 	}
 }
 
