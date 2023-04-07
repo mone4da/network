@@ -18,7 +18,7 @@ module.exports = {
 
 			inchannel: {
 				family: 'udp4',
-				port: 20001
+				port: 30010
 			},
 
 			outchannel: {

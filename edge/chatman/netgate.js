@@ -15,6 +15,36 @@ class NetgateSession{
 
 	onInitialized(){}
 
+	retrieveTag(message){
+		let binary = new Binary()
+		binary.setData(message.slice(0, 8))
+		return binary
+	}
+
+	error(error, detail){
+	return {
+	      timespamp: Date.now(),
+	      from: '',
+	      to: '',
+	      subject: 'error',
+	      body:  { error, detail  }
+	    }
+	}
+
+	retrieveData(message){
+		let str = null
+		try{
+			str = String.fromCharCode(...message.slice(8))
+			return JSON.parse(str)
+		}catch(e){
+			return this.error( e.toString(), str )
+		}
+	}
+
+	retrieveTag(message){
+		return message.slice(0, 8)
+	}
+
 	initializeIn( config, initialized ){
 		this.inChannel = dgram.createSocket(config.family)
 		this.inChannel.on('listening', () => {
@@ -22,9 +52,8 @@ class NetgateSession{
 			initialized()
 		})
 
-		this.inChannel.on('message', (data, info) => {
-			console.log('network message', data)
-			this.onNetworkMessage(data.slice(8), info)
+		this.inChannel.on('message', (msg, info) => {
+			this.onNetworkMessage(this.retrieveData(msg), info)
 		})
 
 		this.inChannel .bind(config.port)

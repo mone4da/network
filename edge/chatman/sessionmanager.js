@@ -5,6 +5,10 @@ class NetgateSession extends require('./netgate'){
 		super(config)
 	}
 
+	onNetworkMessage(msg, info){
+		console.log(msg)
+	}
+
 }
 
 class SessionManager extends NetgateSession{
@@ -27,7 +31,15 @@ class SessionManager extends NetgateSession{
 	}
 
 	onNetworkMessage(msg, info){
+		if (msg.subject != 'error')
+			this.notify(msg)
+
 		console.log(msg)
+	}
+
+	notify(msg){
+		let session = this.sessions[msg.to]
+		session && session.reply(msg)
 	}
 
 	end(_){}
