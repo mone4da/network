@@ -14,7 +14,7 @@ module.exports = {
 		greeting: 'session manager on at ' + Date.now(),
 
 		netgate: {
-			edgeId: 2,
+			edgeId: 2n,
 
 			inchannel: {
 				family: 'udp4',

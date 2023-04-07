@@ -1,8 +1,10 @@
 const dgram = require('node:dgram')
+const Binary = require('./binary')
 
 class NetgateSession{
 	constructor(config){
 		this.edgeId = config.edgeId
+		this.channel = new Binary(this.edgeId)
 
 		this.initializeIn(config.inchannel, () => {
 			this.initializeOut(config.outchannel, () => {
@@ -10,15 +12,6 @@ class NetgateSession{
 			})
 		})
 	}
-
-	initializeChannel(size){
-
-		  let position = Math.floor(this.edgeId / 8)
-		  let offset = this.edgeId % 8
-
-		  this.channel = [...new Array(size)].map((_, i) => i !== position ? 0 : 128 >> offset )
-	}
-
 
 	onInitialized(){}
 
