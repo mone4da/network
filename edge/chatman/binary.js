@@ -1,9 +1,18 @@
 
 class Binary {
-	constructor(value) {
+	constructor(position) {
 		this.data = new DataView(new ArrayBuffer(8), 0, 8)
-		this.data.setBigUint64(0, value ? value : 0n)
+
+		position && this.set(position)
 	}
+
+	add(position) {
+		let binary = new Binary()
+		binary.data.setBigUint64(0, this.data.getBigUint64(0))
+
+		return binary.set(position)
+	}
+
 
 	set(i) {
 		let value = this.data.getBigUint64(0)

@@ -1,29 +1,22 @@
 
-const {generate} = require('./primes')
 const {generateGraph} = require('./data')
-const {search} = require('./tdpath')
+const {xearch : search} = require('./tdpath')
 
-let data = []
-generate(37, prime => {
-	data.push( prime )
-	return false
-}, () => {
-		let graph = generateGraph(data.length, data)
+let data = [...new Array(15)].map((_,i) => i)
 
-		let min = {
-			length: 100,
-			path: []
+let graph = generateGraph(data.length, data)
+
+let min = {
+	length: 100,
+	path: []
+}
+
+search(graph, 4, 12, data => {
+	if (data.length < min.length){
+		min = {
+			length: data.length,
+			path: data
 		}
-		search(graph, 7, 31, data => {
-		if (data.length < min.length){
-			min = {
-				length: data.length,
-				path: data
-			}
-			console.log(data.channel, data.trace.join('->'), data.trace.length )
-		}
-	})
+		console.log( data.channel.toString(), data.trace.join('->'), data.trace.length - 1 )
+	}
 })
-
-
-
