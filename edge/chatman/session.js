@@ -9,6 +9,24 @@ class Session{
 		this.socket.on('signout', data => listen({id: 'signout', data, sessionId: id}))
 		this.socket.on('signal', data => listen({id: 'signal', data, sessionId: id}))
 		this.socket.on('reply', data => listen({id: 'reply', data, sessionId: id}))
+
+		this.standBy()
+	}
+
+	standBy(){
+		this.timer = setTimeout(()=>this.socket.disconnect() , 10000)
+	}
+
+	activate(key){
+		console.log(this.timer !== undefined, this.id)
+
+		this.id = key
+
+		this.timer && clearTimeout( this.timer )
+		this.timer = undefined
+
+		console.log(this.timer !== undefined, this.id)
+
 	}
 
 	sendIn(id, data ){

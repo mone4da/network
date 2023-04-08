@@ -25,8 +25,16 @@ class SessionManager extends require('./sessionmanager'){
 	}
 
 	onSessionEvent(event){
-		console.log('session event', event)
 		//remove, add, grant access, notify to others in this edge
+
+		switch(event.id){
+			case 'end' : this.signout(event.sessionId); break;
+			case 'signout' : this.signout(event.sessionId); break;
+			case 'signin' : this.signin(event.sessionId, event.data); break;
+
+			default: console.log('session event', event)
+
+		}
 	}
 
 	onNetworkMessage( data, info ){

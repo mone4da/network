@@ -9,8 +9,8 @@ class Model extends Session{
 			system: {},
 			user: {
 				access: {
-					key: 'the key',
-					password: 'the password'
+					key: '000000-0000000A',
+					password: 'a simple password'
 				}
 			}
 		}
@@ -67,7 +67,8 @@ class Model extends Session{
 		console.log('on session', data)
 		this.signin(
 			this.state.user.access.key,
-			this.state.user.access.password
+			this.state.user.access.password,
+			this.state.user.access.key
 		)
 	}
 

@@ -30,14 +30,19 @@ class Session{
 
 	//Method
 	send(id, data) {
-		this.socket.emit(id, { ...data, timestamp: Date.now() })
+		this.socket.emit(id, { timestamp: Date.now(), ...data })
 	}
 
-	signin(accesskey, password) {
-		this.send('signin', {
-			'key': accesskey,
-			'password': password
-		})
+	signin(accesskey, password, address) {
+		let data = {
+				body: {
+					accesskey,
+					password,
+					address
+			}
+		}
+
+		this.send('signin', data)
 	}
 
 	signout(accesskey, password) {

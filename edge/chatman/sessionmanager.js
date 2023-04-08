@@ -43,8 +43,19 @@ class SessionManager extends NetgateSession{
 	}
 
 	end(_){}
-	signin(_){}
-	signout(_){}
+	signin(sessionId, data){
+		console.log('signin', data)
+		let session = this.sessions[sessionId]
+		delete this.sessions[sessionId]
+
+		let address = data.body.address || data.body.accesskey
+		session.activate( address )
+		this.sessions[ address ] = session
+	}
+
+	signout( sessionId ){
+		delete this.sessions[sessionId]
+	}
 	signal(_){}
 	reply(_){}
 }
