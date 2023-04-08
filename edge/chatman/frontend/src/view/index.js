@@ -11,12 +11,10 @@ import asset from './asset'
 let View = props => {
 	let {state, event, onUpdate} = props
 
-	return (
-		<Component.Responsive>
-			<div style={style}>Horizontal</div>
-			<div style={style}>Vertical</div>
+	return <Component.Video style={{ width: '300px', height: '300px'}} />
 
-			{/*
+	return (
+		{/*<Component.Responsive>
 				<Header
 				style={style.header}
 				asset={asset.header}
@@ -30,9 +28,9 @@ let View = props => {
 			<Organisation
 				style={style.organisation}
 				content={state.system.copyright}
-			/>*/}
+			/>
 
-		</Component.Responsive>
+		</Component.Responsive> */}
 	)
 }
 
