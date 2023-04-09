@@ -34,12 +34,12 @@ class SessionManager extends NetgateSession{
 		if (msg.subject != 'error')
 			this.notify(msg)
 
-		console.log(msg)
+		console.log('onNetworkMessage', msg)
 	}
 
 	notify(msg){
 		let session = this.sessions[msg.to]
-		session && session.reply(msg)
+		session?.reply(msg)
 	}
 
 	end(_){}
@@ -56,8 +56,23 @@ class SessionManager extends NetgateSession{
 	signout( sessionId ){
 		delete this.sessions[sessionId]
 	}
-	signal(_){}
-	reply(_){}
+
+	signal( sessionId, data){
+		this.signal( data )
+	}
+
+	reply(sessionId, data){
+		try{
+			let target = this.sessions[ data.to ]
+			if (target){
+				target.reply( data )
+			}else
+				this.send( data )
+		}catch(e){
+			console.log('error', data)
+		}
+	
+	}
 }
 
 module.exports = SessionManager

@@ -45,29 +45,35 @@ class Session{
 		this.send('signin', data)
 	}
 
-	signout(accesskey, password) {
-		this.send('signout', {
-			'key': accesskey,
-			'password': password
-		})
+	signout(accesskey, password, address) {
+		let data = {
+				body: {
+					accesskey,
+					password,
+					address
+			}
+		}
+
+		this.send('sigout', data)
 	}
 
-	signal(from, to, data) {
+	signal(from, to, subject, body) {
 		this.send('signal', {
-			'from': from,
-			'to': to,
-			...data
+			from,
+			to,
+			subject,
+			body
 		})
 	}
 
-	reply(from, to, data) {
+	reply(from, to, subject, body) {
 		this.send('reply', {
-			'from': from,
-			'to': to,
-			...data
+			from,
+			to,
+			subject,
+			body
 		})
 	}
-
 
 }
 

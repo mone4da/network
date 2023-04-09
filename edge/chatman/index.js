@@ -31,6 +31,7 @@ class SessionManager extends require('./sessionmanager'){
 			case 'end' : this.signout(event.sessionId); break;
 			case 'signout' : this.signout(event.sessionId); break;
 			case 'signin' : this.signin(event.sessionId, event.data); break;
+			case 'reply' : this.reply(event.sessionId, event.data); break;
 
 			default: console.log('session event', event)
 
@@ -38,7 +39,7 @@ class SessionManager extends require('./sessionmanager'){
 	}
 
 	onNetworkMessage( data, info ){
-		console.log( data )
+		console.log('onNetworkMessage', data, info )
 
 		//get the fields from and to. Find the session with key to. sendIn
 	}

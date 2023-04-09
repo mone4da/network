@@ -6,6 +6,10 @@ class Binary {
 		position && this.set(position)
 	}
 
+	getData() {
+		return new Uint8Array(this.data.buffer)
+	}
+
 	add(position) {
 		let binary = new Binary()
 		binary.data.setBigUint64(0, this.data.getBigUint64(0))

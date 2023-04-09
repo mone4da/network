@@ -21,20 +21,35 @@ class NetgateSession{
 		return binary
 	}
 
+	createMessage( data ){
+		let dataBytes = Array.from(Buffer.from(JSON.stringify(data), 'utf8'))
+		return new Uint8Array([...this.channel.getData(),1, ...dataBytes])
+	}
+
+	createSignalMessage( data ){
+		let dataBytes = Array.from(Buffer.from(JSON.stringify(data), 'utf8'))
+		return new Uint8Array([...this.channel.getData(),0, ...dataBytes])
+	}
+
+
 	error(error, detail){
-	return {
-	      timespamp: Date.now(),
-	      from: '',
-	      to: '',
-	      subject: 'error',
-	      body:  { error, detail  }
-	    }
+		return {
+		      timespamp: Date.now(),
+		      from: '',
+		      to: '',
+		      subject: 'error',
+		      body:  { error, detail  }
+		    }
+	}
+
+	isSignal( message ){
+		return message[8] === 0
 	}
 
 	retrieveData(message){
 		let str = null
 		try{
-			str = String.fromCharCode(...message.slice(8))
+			str = String.fromCharCode(...message.slice(9))
 			return JSON.parse(str)
 		}catch(e){
 			return this.error( e.toString(), str )
@@ -53,7 +68,7 @@ class NetgateSession{
 		})
 
 		this.inChannel.on('message', (msg, info) => {
-			this.onNetworkMessage(this.retrieveData(msg), info)
+			this.onNetworkMessage(this.retrieveData(msg), { ...info, signal : this.isSignal(msg)} )
 		})
 
 		this.inChannel .bind(config.port)
@@ -68,7 +83,11 @@ class NetgateSession{
 	onInitialized(){}
 
 	send(data){
-		this.outChannel.send(data)
+		this.outChannel.send(this.createMessage( data ) )
+	}
+
+	signal( data ){
+		this.outChannel.send(this.createSignalMessage( data ) )
 	}
 
 }
