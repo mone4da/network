@@ -1,0 +1,24 @@
+{
+	"00000000-00000000AA" : {
+		"password" : "pass1",
+		"address" : "00000000-00000000AA",
+		"data" : {
+			"email" : "sam@mail.com"
+		}
+	},
+	"00000000-00000000A0" : {
+			"password" : "pass2",
+			"address" : "00000000-00000000A0",
+			"data" : {
+				"email" : "mary@mail.com"
+			}
+	},
+	"00000000-00000000A1" : {
+			"password" : "pass2",
+			"address" : "00000000-00000000A1",
+			"data" : {
+				"email" : "lola@mail.com"
+			}
+	}
+}
+
