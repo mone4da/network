@@ -15,9 +15,11 @@ class SessionManager extends NetgateSession{
 	constructor(config, io){
 		super(config.netgate)
 
+		this.credentials = config.credentials
+
 		this.sessions = {}
 
-		io.on('connection', socket => this.onConnection( this.createSession(socket)))
+		io.on('connection', socket => {console.log('connection ...!!!'); this.onConnection( this.createSession(socket)) })
 	}
 
 	onConnection(session){
@@ -44,7 +46,6 @@ class SessionManager extends NetgateSession{
 
 	end(_){}
 	signin(sessionId, data){
-		console.log('signin', data)
 		let session = this.sessions[sessionId]
 		delete this.sessions[sessionId]
 
@@ -52,7 +53,7 @@ class SessionManager extends NetgateSession{
 		session.activate( address )
 		this.sessions[ address ] = session
 
-		session.grant()
+		this.requestAccess( data.body.accesskey, data.body.password )
 	}
 
 	signout( sessionId ){
@@ -73,7 +74,22 @@ class SessionManager extends NetgateSession{
 		}catch(e){
 			console.log('error', data)
 		}
-	
+
+	}
+
+	requestAccess( accesskey, password){
+		let data = {
+			timestamp: Date.now(),
+			from: this.credentials.address,
+			to: this.accesscontroller.address,
+			subject: 'grant',
+			body: {
+				user: {accesskey, password },
+				requester:  { accesskey: this.credentials.accesskey, password: this.credentials.password}
+			}
+		}
+
+		this.send( data )
 	}
 }
 

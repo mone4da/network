@@ -1,30 +1,28 @@
 
 const config = require('./config')
 
-class DB extends require('./one/db'){
-	constructor(){
+class DB extends require('./one/dispatcher'){
+	constructor(config){
 		super()
-		this.load('./data/item_1.json')
-
-		this.collect(item => {
-
-			console.log(item)
-			return true
-		})
+		this.load(config.path, config.sections)
 	}
 }
 
 class App extends require('./adrenalina/abstractapp'){
-	constructor(config){
-		super(config.host)
+	constructor(){
+		super(config)
+
+		//this.db = new  DB(config.db)
 	}
 
 	getCredentials() {
 		return config.credentials
 	}
 
+	onAccessing(){
+		console.log('accessing ....')
+	}
+
 }
 
-//new App()
-
-new DB()
+new App()

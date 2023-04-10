@@ -65,11 +65,6 @@ class Model extends Session{
 
 	onSession(data) {
 		console.log('on session', data)
-		/*this.signin(
-			this.state.user.access.key,
-			this.state.user.access.password,
-			this.state.user.access.key
-		)*/
 	}
 
 	onGranted(data) {
@@ -87,7 +82,7 @@ class Model extends Session{
 	//methods
 	update(data, id){
 		switch(id){
-			case 'signin' : this.signing(data.accesskey, data.password, data.accesskey); break;
+			case 'signin' : this.signin(data.accesskey, data.password, data.accesskey); break;
 		}
 	}
 }

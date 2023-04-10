@@ -13,6 +13,15 @@ module.exports = {
 	sessionmanager : {
 		greeting: 'session manager on at ' + Date.now(),
 
+		credentials: {
+			accesskey: 'FFFFFFFF-FFFFFF0000',
+			password: 'ec5a7312-d7e4-11ed-81be-005056492a84'
+		},
+
+		accesscontroller: {
+			address: 'FFFFFFFF-FFFFFFFFFF'
+		},
+
 		netgate: {
 			edgeId: 0,
 

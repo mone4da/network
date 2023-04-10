@@ -1,6 +1,8 @@
 
 class Session{
 	constructor(id, socket, listen){
+		console.log('session', id)
+
 		this.id = id
 		this.socket = socket
 
@@ -10,7 +12,7 @@ class Session{
 		this.socket.on('signal', data => listen({id: 'signal', data, sessionId: id}))
 		this.socket.on('reply', data => listen({id: 'reply', data, sessionId: id}))
 
-		this.standBy()
+		//this.standBy()
 	}
 
 	standBy(){
@@ -44,7 +46,7 @@ class Session{
 			timestamp: Date.now(),
 			from: '',
 			to: this.id,
-			body: 'Welcome'
+			body: { ok: true, data: 'Welcome'}
 		}
 		this.sendIn('granted', data)
 	}

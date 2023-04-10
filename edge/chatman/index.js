@@ -21,11 +21,13 @@ class SessionManager extends require('./sessionmanager'){
 	}
 
 	createSession(socket){
+		console.log('createSessio ...')
 		return new Session(this.newSessionId(), socket, event => this.onSessionEvent(event))
 	}
 
 	onSessionEvent(event){
 		//remove, add, grant access, notify to others in this edge
+		console.log(event)
 
 		switch(event.id){
 			case 'end' : this.signout(event.sessionId); break;

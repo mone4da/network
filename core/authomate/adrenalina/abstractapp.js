@@ -1,7 +1,9 @@
 
 class AbstractApp extends require('./session') {
 	constructor(config) {
-		super(config)
+		super()
+
+		this.connect(config.connection)
 	}
 
 	onConnection() {
@@ -9,6 +11,10 @@ class AbstractApp extends require('./session') {
 
 		var cred = this.getCredentials()
 		this.signin(cred.key, cred.password, cred.address)
+	}
+
+	onConnectionError(e){
+		console.log(e)
 	}
 
 	getCredentials() {
@@ -25,12 +31,18 @@ class AbstractApp extends require('./session') {
 
 	}
 
+	onSession(data){
+		console.log('onsession', data)
+	}
+
 
 	onDenied(data) {
+		console.log('denied')
 		this.onAccess(false)
 	}
 
 	onGranted(data) {
+		console.log('granted')
 		this.onAccess(true)
 	}
 

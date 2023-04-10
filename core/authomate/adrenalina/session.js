@@ -3,11 +3,10 @@ const {Manager} = require('socket.io-client')
 
 class Session{
 	constructor(){
-		this.manager = new Manager()
 	}
 
 	connect(config){
-		console.log(config)
+		this.manager = new Manager(config.host)
 		this.socket = this.manager.socket(config.path, config.options)
 
 		this.socket.on('connect', () => { this.onConnection() })
@@ -54,7 +53,7 @@ class Session{
 			}
 		}
 
-		this.send('sigout', data)
+		this.send('signout', data)
 	}
 
 	signal(from, to, subject, body) {
@@ -74,7 +73,6 @@ class Session{
 			body
 		})
 	}
-
 
 }
 
