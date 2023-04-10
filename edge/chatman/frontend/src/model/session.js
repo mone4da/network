@@ -54,7 +54,7 @@ class Session{
 			}
 		}
 
-		this.send('sigout', data)
+		this.send('signout', data)
 	}
 
 	signal(from, to, subject, body) {

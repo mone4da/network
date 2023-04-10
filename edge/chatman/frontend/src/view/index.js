@@ -1,5 +1,7 @@
 import Component from './component'
 
+import {useState} from 'react'
+
 import {
 	Header,
 	Communication,
@@ -8,8 +10,24 @@ import {
 import style from './style'
 import asset from './asset'
 
+let Login = props => {
+	let [accesskey, setAccesskey] = useState('')
+	let [password, setPassword] = useState('')
+
+	let handleSubmit = () => {
+		props.onSubmit && props.onSubmit({ accesskey, password, address: accesskey})
+	}
+
+	return <div style={{display: 'flex', flexDirection: 'column'}}>
+			<input onChange={e => setAccesskey(e.target.value)} />
+			<input onChange={e => setPassword(e.target.value)} />
+			<button onClick={handleSubmit}>Login</button>
+		</div>
+}
+
 let videoStyle = {
 	display: 'flex',
+	flexDirection: 'column',
 	justifyContent: 'center',
 	alignItems: 'center',
 
@@ -25,7 +43,16 @@ let videoStyle = {
 let View = props => {
 	let {state, event, onUpdate} = props
 
-	return	<div style={videoStyle}> <Component.Video style={{ width: '300px', height: '300px'}} /></div>
+	let handleLogin = data => {
+		console.log('submit', data)
+		onUpdate && onUpdate(data, 'signin')
+	}
+
+	return	event.source === 'edge-auth' && event.data.body === 'Welcome'
+						? <div style={videoStyle}>
+							<Component.Video style={{ width: '300px', height: '300px'}} />
+						</div>
+						: <Login onSubmit={handleLogin} />
 
 
 	return (

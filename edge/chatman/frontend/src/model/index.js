@@ -65,15 +65,15 @@ class Model extends Session{
 
 	onSession(data) {
 		console.log('on session', data)
-		this.signin(
+		/*this.signin(
 			this.state.user.access.key,
 			this.state.user.access.password,
 			this.state.user.access.key
-		)
+		)*/
 	}
 
 	onGranted(data) {
-		console.log('granted', data)
+		this.onUpdate && this.onUpdate(data, 'edge-auth')
 	}
 
 	onDenied(data) {
@@ -82,6 +82,13 @@ class Model extends Session{
 
 	onReply(data) {
 		console.log('reply', data)
+	}
+
+	//methods
+	update(data, id){
+		switch(id){
+			case 'signin' : this.signing(data.accesskey, data.password, data.accesskey); break;
+		}
 	}
 }
 

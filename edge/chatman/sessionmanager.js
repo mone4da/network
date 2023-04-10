@@ -51,6 +51,8 @@ class SessionManager extends NetgateSession{
 		let address = data.body.address || data.body.accesskey
 		session.activate( address )
 		this.sessions[ address ] = session
+
+		session.grant()
 	}
 
 	signout( sessionId ){

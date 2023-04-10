@@ -14,6 +14,7 @@ let App = props => {
 	let [event, setEvent] = useState({source:'', data:''})
 
 	let handleUpdate = (data,id) => {
+		model.update(data, id)
 		//setState(state => data)
 	}
 

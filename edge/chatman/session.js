@@ -14,7 +14,7 @@ class Session{
 	}
 
 	standBy(){
-		this.timer = setTimeout(()=>this.socket.disconnect() , 10000)
+		this.timer = setTimeout(()=>this.socket.disconnect() , 600000)
 	}
 
 	activate(key){
@@ -35,6 +35,18 @@ class Session{
 
 	reply(data){
 		this.sendIn('reply', data)
+	}
+
+	//methods
+	grant(){
+		console.log('send granted ...')
+		let data = {
+			timestamp: Date.now(),
+			from: '',
+			to: this.id,
+			body: 'Welcome'
+		}
+		this.sendIn('granted', data)
 	}
 }
 
