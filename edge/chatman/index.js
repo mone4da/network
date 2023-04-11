@@ -35,6 +35,10 @@ class SessionManager extends require('./sessionmanager'){
 			case 'signin' : this.signin(event.sessionId, event.data); break;
 			case 'reply' : this.reply(event.sessionId, event.data); break;
 
+			case 'checkin' : this.checkin(event.sessionId, event.data); break;
+			case 'checkout' : this.checkout(event.sessionId, event.data); break;
+
+
 			default: console.log('session event', event)
 
 		}

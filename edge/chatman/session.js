@@ -12,6 +12,9 @@ class Session{
 		this.socket.on('signal', data => listen({id: 'signal', data, sessionId: id}))
 		this.socket.on('reply', data => listen({id: 'reply', data, sessionId: id}))
 
+		this.socket.on('checkin', data => listen({id: 'checkin', data, sessionId: id}))
+		this.socket.on('checkout', data => listen({id: 'checkout', data, sessionId: id}))
+
 		//this.standBy()
 	}
 

@@ -16,6 +16,7 @@ class SessionManager extends NetgateSession{
 		super(config.netgate)
 
 		this.credentials = config.credentials
+		this.accesscontroller = config.accesscontroller.credentials
 
 		this.sessions = {}
 
@@ -91,6 +92,25 @@ class SessionManager extends NetgateSession{
 
 		this.send( data )
 	}
+
+	checkin(sessionId, data){
+		if (this.accesscontroller.password === data.body.password &&
+			this.accesscontroller.accesskey === data.body.accesskey){
+
+			let session = this.sessions[sessionId]
+			delete this.sessions[sessionId]
+
+			let address = data.body.address || data.body.accesskey
+			session.activate( address )
+			this.sessions[ address ] = session
+
+			session.grant()
+		}
+
+		console.log('checkin', sessionId, data)
+	}
+
+	checkout(sessionId, data){}
 }
 
 module.exports = SessionManager

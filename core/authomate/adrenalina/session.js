@@ -74,6 +74,30 @@ class Session{
 		})
 	}
 
+	checkin(accesskey, password, address) {
+		let data = {
+			body: {
+				accesskey,
+				password,
+				address
+			}
+		}
+
+		console.log('checkin', data)
+		this.send('checkin', data)
+	}
+
+	checkout(accesskey, password, address) {
+		let data = {
+			body: {
+				accesskey,
+				password,
+				address
+			}
+		}
+
+		this.send('checkout', data)
+	}
 }
 
 module.exports = Session

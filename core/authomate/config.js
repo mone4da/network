@@ -1,7 +1,7 @@
 
 module.exports = {
 	connection: {
-		host: 'https://4digitalasset.com',
+		host: 'https://4digitalasset.com:1443',
 		path: '/',
 		options: {
 			transports: ['websocket', 'polling']
@@ -10,8 +10,8 @@ module.exports = {
 
 	credentials: {
 		key: 'FFFFFFFF-FFFFFFFFFF',
-		password: 'pasword',
-		address: 'FFFFFFFF-FFFFFFFFFF',
+		password: 'e439a168-d7fc-11ed-b64e-005056492a84',
+		address: 'FFFFFFFF-FFFFFFFFBB',
 
 		managers: {
 			'FFFFFFFF-FFFFFF0000': {

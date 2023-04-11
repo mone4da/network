@@ -19,7 +19,11 @@ module.exports = {
 		},
 
 		accesscontroller: {
-			address: 'FFFFFFFF-FFFFFFFFFF'
+			credentials: {
+				address: 'FFFFFFFF-FFFFFFFFFF',
+				accesskey: 'FFFFFFFF-FFFFFFFFFF',
+				password: 'e439a168-d7fc-11ed-b64e-005056492a84'
+			}
 		},
 
 		netgate: {

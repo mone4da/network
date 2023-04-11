@@ -10,7 +10,7 @@ class AbstractApp extends require('./session') {
 		this.onAccessing();
 
 		var cred = this.getCredentials()
-		this.signin(cred.key, cred.password, cred.address)
+		this.checkin(cred.key, cred.password, cred.address)
 	}
 
 	onConnectionError(e){
