@@ -41,7 +41,7 @@ module.exports = {
 					location: 'https://4digitalasset.com:3002'
 				},
 				{
-					id: 'sn',
+					id: 'sg',
 					url: './asset/sg.svg',
 					name: 'Singapore',
 					position: {x: 300, y: 200},

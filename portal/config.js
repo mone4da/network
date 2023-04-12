@@ -5,8 +5,8 @@ module.exports = {
 		content: './frontend/build',
 
 		security: {
-			key: './security/key.pem',
-			cert: './security/cert.pem'
+			key: '../security/key.pem',
+			cert: '../security/cert.pem'
 		}
 	},
 
